@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 보안 취약점 신고
+    url: https://github.com/e-chang0/StressFit/security/advisories/new
+    about: 공개 이슈 대신 비공개 보안 권고를 이용해 주세요.

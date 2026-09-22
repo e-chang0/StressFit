@@ -1,0 +1,62 @@
+name: Feature request
+description: StressFit의 새 기능이나 개선 사항을 제안합니다.
+title: "[Feature] "
+labels: ["type: feature", "status: triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 해결하려는 문제
+      description: 사용자 관점에서 어떤 불편을 해결하는지 적어 주세요.
+      placeholder: "사용자는 ...하기 어렵다."
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 제안하는 해결 방법
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 인수 조건
+      placeholder: |
+        - [ ] Given ... When ... Then ...
+        - [ ] 예외 상황에서도 ...
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 기능 영역
+      options:
+        - Frontend
+        - Backend/API
+        - Recommendation
+        - Data/Database
+        - DevOps
+        - Documentation
+    validations:
+      required: true
+  - type: dropdown
+    id: size
+    attributes:
+      label: 예상 크기
+      options:
+        - XS - 1 point
+        - S - 2 points
+        - M - 3 points
+        - L - 5 points
+        - XL - 분할 필요
+    validations:
+      required: true
+  - type: checkboxes
+    id: done
+    attributes:
+      label: 완료 정의
+      options:
+        - label: 테스트와 문서 업데이트를 포함합니다.
+          required: true
+        - label: 접근성과 개인정보 보호 영향을 검토했습니다.
+          required: true
