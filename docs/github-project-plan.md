@@ -4,6 +4,11 @@
 
 `StressFit Sprint Board`는 사용자의 스트레스 상태와 운동 여건을 반영한 맞춤 운동 추천 MVP를 2개 스프린트로 계획하고 추적한다.
 
+- Project: https://github.com/users/e-chang0/projects/4
+- Kanban Board: https://github.com/users/e-chang0/projects/4/views/1
+- Sprint Metrics: https://github.com/users/e-chang0/projects/4/views/2
+- Insights: https://github.com/users/e-chang0/projects/4/insights
+
 ## 칸반 흐름
 
 | 상태 | 진입 조건 | 종료 조건 | WIP 권장 한도 |
@@ -59,7 +64,7 @@ GitHub Project의 `Story Points` 숫자 필드는 1, 2, 3, 5, 8의 피보나치 
 
 ### 1. Cycle Time
 
-측정식은 `완료일 - 시작일`이다. Project의 `Start date`와 `End date`를 사용하며, 평균뿐 아니라 중앙값과 85백분위수를 함께 본다. 초기 설정 시점에는 기획 이슈 2개(합계 5 SP)를 완료 처리했으므로 표본이 작고 같은 날 등록된 데이터는 `< 1일`로 표시한다. 첫 스프린트 종료 후 최소 5개 완료 이슈가 쌓이면 병목 상태별 체류시간을 분석한다.
+측정식은 `완료일 - 시작일`이다. Project의 `Start Date`와 `End Date`를 사용하며, 평균뿐 아니라 중앙값과 85백분위수를 함께 본다. 초기 설정 시점에는 기획 이슈 2개(합계 5 SP)를 완료 처리했으므로 표본이 작고 같은 날 등록된 데이터는 `< 1일`로 표시한다. 첫 스프린트 종료 후 최소 5개 완료 이슈가 쌓이면 병목 상태별 체류시간을 분석한다.
 
 ### 2. Velocity
 
@@ -90,8 +95,9 @@ Sprint 1은 21 SP에서 시작해 현재 16 SP가 남는다. 7일 스프린트�
 
 ## Project Insights 구성
 
-- `Cycle Time`: 완료 이슈를 대상으로 시작일과 완료일 차이를 주 단위로 확인
-- `Velocity by Sprint`: X축 Sprint, Y축 Story Points 합계, 필터 `status:Done`
-- `Sprint Burndown`: 시간에 따른 미완료 Story Points 합계
+- `Work by Status`: 상태별 이슈 수(Backlog 7, To Do 2, In Progress 1, Review 0, Done 2)
+- `Velocity by Sprint`: X축 Sprint, Y축 Story Points 합계, 상태별 그룹. Sprint 1은 21 SP 중 Done 5 SP, Sprint 2는 21 SP 중 Done 0 SP이다.
+- `Burndown — Remaining Story Points`: 시간에 따른 Open/Completed Story Points 선 그래프. 현재 전체 42 SP 중 Open 37 SP, Completed 5 SP이다.
+- `Cycle Time`: 완료 이슈를 대상으로 `Start Date`와 `End Date` 차이를 계산한다. 현재 완료 표본 2건은 같은 날 생성·완료되어 `< 1일`이며, 날짜 데이터가 누적되면 평균·중앙값·85백분위수를 비교한다.
 
 초기 수치는 계획 수립 직후의 베이스라인이다. 실제 운영 중에는 이슈 상태와 날짜를 갱신해 Insights 차트와 이 문서의 표를 스프린트 종료마다 함께 업데이트한다.
