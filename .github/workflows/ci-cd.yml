@@ -1,73 +1,49 @@
 name: StressFit CI/CD
-
 on:
   push:
     branches: [main, 'feature/**']
   pull_request:
     branches: [main]
   workflow_dispatch:
-
-# 기본은 읽기만 허용하고, Deploy에만 배포 권한을 부여합니다.
 permissions:
   contents: read
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
-  build:
-    name: Build and Lint
+  changes:
+    name: Detect changed files
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 5
+    outputs:
+      ci: ${{ steps.filter.outputs.ci }}
+      deploy: ${{ steps.filter.outputs.deploy }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
         with:
-          node-version: '22'
-          cache: npm
-      - run: npm ci
-      - name: ESLint 검사
-        run: npm run lint
-      - name: 배포 파일 빌드
-        run: npm run build
-      - name: 빌드 산출물 업로드
-        uses: actions/upload-artifact@v4
-        with:
-          name: stressfit-build
-          path: dist/
-          if-no-files-found: error
-          retention-days: 7
-
-  test:
-    name: Test (${{ matrix.os }}, Node ${{ matrix.node }})
-    needs: build
-    runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Compare PR base/head or push before/after
+        id: filter
+        run: node scripts/changed-files.js
+  verify:
+    name: Verify (${{ matrix.os }}, Node ${{ matrix.node }})
+    needs: changes
+    if: needs.changes.outputs.ci == 'true'
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         node: ['22', '24']
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node }}
-          cache: npm
-      - run: npm ci
-      - name: Build에서 만든 파일 다운로드
-        uses: actions/download-artifact@v4
-        with:
-          name: stressfit-build
-          path: dist/
-      - name: 전달받은 배포 파일 테스트
-        run: npm test
-
+    uses: ./.github/workflows/reusable-ci.yml
+    with:
+      os: ${{ matrix.os }}
+      node-version: ${{ matrix.node }}
+      upload-build: ${{ matrix.os == 'ubuntu-latest' && matrix.node == '24' }}
   deploy:
-    name: Deploy to GitHub Pages
-    needs: [build, test]
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    name: Deploy changed app to Pages
+    needs: [changes, verify]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.changes.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -78,17 +54,36 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: 테스트를 통과한 빌드 파일 다운로드
-        uses: actions/download-artifact@v4
+      - uses: actions/configure-pages@v6
+      - uses: actions/download-artifact@v8
         with:
           name: stressfit-build
           path: dist/
-      - name: Pages용 아티팩트 업로드
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: dist/
-      - name: Secrets로 배포 인증 후 게시
+      - uses: actions/deploy-pages@v5
         id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+  summary:
+    name: Pipeline decision
+    if: always()
+    needs: [changes, verify, deploy]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Explain run and skip decisions
+        env:
+          EVENT: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+          CI_CHANGED: ${{ needs.changes.outputs.ci }}
+          APP_CHANGED: ${{ needs.changes.outputs.deploy }}
+          FILTER_RESULT: ${{ needs.changes.result }}
+          VERIFY_RESULT: ${{ needs.verify.result }}
+          DEPLOY_RESULT: ${{ needs.deploy.result }}
+        run: |
+          node --input-type=module <<'JS'
+          import { appendFileSync } from 'node:fs';
+          const e = process.env;
+          appendFileSync(e.GITHUB_STEP_SUMMARY, `## Selective pipeline\n\n| Item | Value |\n|---|---|\n| Event | ${e.EVENT} |\n| Ref | ${e.REF} |\n| CI-related changes | ${e.CI_CHANGED} |\n| Deployable app changes | ${e.APP_CHANGED} |\n| Change detection | ${e.FILTER_RESULT} |\n| Matrix verification | ${e.VERIFY_RESULT} |\n| Deployment | ${e.DEPLOY_RESULT} |\n\nDeployment requires a push to main, app changes, and all six verification jobs to pass. Documentation-only changes skip verification and deployment.\n`);
+          if (['failure', 'cancelled'].includes(e.FILTER_RESULT) || ['failure', 'cancelled'].includes(e.VERIFY_RESULT) || ['failure', 'cancelled'].includes(e.DEPLOY_RESULT)) process.exitCode = 1;
+          JS

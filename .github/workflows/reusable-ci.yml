@@ -1,0 +1,64 @@
+name: Reusable StressFit verification
+on:
+  workflow_call:
+    inputs:
+      os:
+        type: string
+        default: ubuntu-latest
+      node-version:
+        type: string
+        default: '24'
+      cache:
+        type: boolean
+        default: true
+      cache-namespace:
+        type: string
+        default: stressfit-deps-v1
+      expect-cache:
+        type: string
+        default: any
+      upload-build:
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ${{ inputs.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Start measured pipeline
+        shell: bash
+        run: node scripts/ci-timing.js start pipeline
+      - name: Prepare Node and dependencies
+        id: dependencies
+        uses: ./.github/actions/setup-node
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache: ${{ inputs.cache }}
+          cache-namespace: ${{ inputs.cache-namespace }}
+          expect-cache: ${{ inputs.expect-cache }}
+      - name: Lint
+        run: npm run lint
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm test
+      - name: Record pipeline metrics
+        shell: bash
+        env:
+          CACHE_ENABLED: ${{ inputs.cache }}
+          CACHE_HIT: ${{ steps.dependencies.outputs.cache-hit }}
+          CACHE_KEY: ${{ steps.dependencies.outputs.cache-key }}
+          NODE_RUNTIME: ${{ steps.dependencies.outputs.node-version }}
+        run: node scripts/ci-timing.js report
+      - uses: actions/upload-artifact@v7
+        if: inputs.upload-build
+        with:
+          name: stressfit-build
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
