@@ -1,6 +1,6 @@
 # 워크플로우 실행 최적화
 
-## 제출 링크
+## 링크
 
 - [StressFit 저장소](https://github.com/e-chang0/StressFit)
 - [최적화 전 워크플로우](https://github.com/e-chang0/StressFit/blob/20be27ebba882d8d6195739a3bf2a33c43500aaf/.github/workflows/ci-cd.yml)
@@ -82,11 +82,3 @@ Node.js 24 권장. Windows PowerShell 실행 정책 오류 시 npm 대신 npm.cm
 GitHub Actions에서 Cache benchmark → Run workflow를 실행하면 새로운 run/attempt별 캐시를 사용한다. 같은 커밋에서 7개 표본을 측정하고 Summary 및 cache-benchmark-evidence 아티팩트에 보고서와 JSON을 생성한다. 3개 적중 표본에서 cache-hit=true를 검증하므로 최초 저장을 적중으로 혼동하지 않는다.
 
 GitHub Pages 최초 게시에는 저장소 Settings → Pages → Source: GitHub Actions 설정이 필요하다. 이후 앱 파일 변경을 main에 반영하면 자동 배포된다. 문서만 수정하면 재배포하지 않는다.
-
-## 공식 참고 자료
-
-- [재사용 워크플로우와 Composite Action의 차이](https://docs.github.com/en/actions/concepts/workflows-and-actions/reusing-workflow-configurations)
-- [Reusable Workflow](https://docs.github.com/en/actions/how-tos/reuse-automations/reuse-workflows)
-- [actions/cache](https://github.com/actions/cache)
-- [setup-node 캐시는 node_modules를 저장하지 않음](https://github.com/actions/setup-node#caching-global-packages-data)
-- [Pages 배포](https://github.com/actions/deploy-pages)
