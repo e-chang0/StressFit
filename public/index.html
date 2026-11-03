@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StressFit · 오늘의 작은 움직임</title>
+    <link rel="stylesheet" href="./style.css">
+    <script type="module" src="./main.js"></script>
+  </head>
+  <body>
+    <main>
+      <header><a class="brand" href="./">StressFit<span>●</span></a><span class="tag">추천 기능 데모</span></header>
+      <section class="intro">
+        <p class="eyebrow">MOVE AT YOUR OWN PACE</p>
+        <h1>오늘의 나에게 맞는<br>작은 움직임.</h1>
+        <p>지금의 상태와 여유 시간을 알려 주세요.<br>부담 없이 시작할 루틴을 함께 찾아볼게요.</p>
+      </section>
+      <div class="grid">
+        <form id="routine-form" class="card">
+          <h2>오늘의 상태</h2>
+          <label for="stress">스트레스 수준 <small>1은 낮음, 10은 높음</small></label>
+          <input id="stress" name="stress" type="number" min="1" max="10" value="5" required>
+          <label for="minutes">여유 시간</label>
+          <select id="minutes" name="minutes"><option value="5">5분</option><option value="10" selected>10분</option><option value="20">20분</option><option value="30">30분</option></select>
+          <label for="place">운동 장소</label>
+          <select id="place" name="place"><option value="indoor">실내</option><option value="outdoor">야외</option></select>
+          <label class="checkbox"><input name="hasPain" type="checkbox"> 현재 통증이나 부상이 있어요</label>
+          <button type="submit">내 루틴 확인하기 <span>→</span></button>
+          <p id="error" role="alert"></p>
+        </form>
+        <section class="card recommendation" aria-live="polite">
+          <p class="eyebrow">YOUR DAILY ROUTINE</p>
+          <h2>짧게 시작해도 괜찮아요.</h2>
+          <p>왼쪽에 오늘의 상태를 입력하면<br>이곳에서 추천 루틴을 확인할 수 있어요.</p>
+          <div id="result" hidden>
+            <p class="result-label">오늘의 추천</p>
+            <h3 id="routine-title"></h3>
+            <p id="routine-detail"></p>
+            <p id="routine-reason"></p>
+          </div>
+          <p class="notice">학습용 규칙 기반 데모이며 의료 진단이나 치료를 제공하지 않습니다.</p>
+        </section>
+      </div>
+      <footer>StressFit · GitHub Actions CI/CD 실습 · 입력 정보는 서버에 저장하지 않습니다.</footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "stressfit-ci-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "StressFit 운동 추천 데모와 GitHub Actions CI/CD 실습",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "build": "node scripts/build.js",
+    "test": "node --test",
+    "preview": "node scripts/preview.js"
+  },
+  "devDependencies": {
+    "eslint": "10.14.0"
+  }
+}

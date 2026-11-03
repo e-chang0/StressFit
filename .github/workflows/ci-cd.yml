@@ -1,0 +1,94 @@
+name: StressFit CI/CD
+
+on:
+  push:
+    branches: [main, 'feature/**']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# 기본은 읽기만 허용하고, Deploy에만 배포 권한을 부여합니다.
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and Lint
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: ESLint 검사
+        run: npm run lint
+      - name: 배포 파일 빌드
+        run: npm run build
+      - name: 빌드 산출물 업로드
+        uses: actions/upload-artifact@v4
+        with:
+          name: stressfit-build
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+
+  test:
+    name: Test (${{ matrix.os }}, Node ${{ matrix.node }})
+    needs: build
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node: ['22', '24']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - name: Build에서 만든 파일 다운로드
+        uses: actions/download-artifact@v4
+        with:
+          name: stressfit-build
+          path: dist/
+      - name: 전달받은 배포 파일 테스트
+        run: npm test
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: [build, test]
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 테스트를 통과한 빌드 파일 다운로드
+        uses: actions/download-artifact@v4
+        with:
+          name: stressfit-build
+          path: dist/
+      - name: Pages용 아티팩트 업로드
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/
+      - name: Secrets로 배포 인증 후 게시
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

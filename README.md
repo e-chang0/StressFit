@@ -2,6 +2,26 @@
 
 > 사용자의 스트레스 상태와 운동 여건을 반영해, 지금 실천할 수 있는 맞춤형 운동을 추천하는 웹 서비스
 
+## CI/CD 실습 데모
+
+현재 실행 코드는 CI/CD 학습을 위한 **HTML/CSS/JavaScript 기반 운동 추천 데모**입니다.
+아래 기술 스택과 전체 MVP는 향후 개발 계획이며, React·FastAPI·DB는 아직 구현하지 않았습니다.
+
+```bash
+npm ci
+npm run lint
+npm run build
+npm test
+npm run preview
+```
+
+Node.js 22.13 이상이 필요합니다. 미리보기: http://127.0.0.1:4173
+테스트는 `dist/`를 사용하므로 먼저 빌드해야 합니다.
+
+- [워크플로우 YAML](https://github.com/e-chang0/StressFit/blob/feature/basic-cicd/.github/workflows/ci-cd.yml)
+- [Actions 실행 내역](https://github.com/e-chang0/StressFit/actions/workflows/ci-cd.yml)
+- [과제 설명 및 제출 안내](docs/ci-cd-assignment.md)
+
 ## 1. 프로젝트 개요
 
 - **프로젝트명:** StressFit
