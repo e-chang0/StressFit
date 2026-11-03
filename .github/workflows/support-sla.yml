@@ -1,0 +1,32 @@
+name: Support SLA (Draft)
+on:
+  schedule:
+    - cron: '17 0 * * *' # 매일 09:17 KST, 지연될 수 있음
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'true이면 라벨 변경 없이 미리보기만 표시'
+        default: true
+        type: boolean
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: support-sla
+  cancel-in-progress: false
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/github-script@v8
+        env:
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || github.event_name != 'workflow_dispatch' && vars.COMMUNITY_AUTOMATION_ENABLED != 'true' }}
+        with:
+          script: |
+            const { trackSla } = require('./scripts/community.cjs');
+            const result = await trackSla({ github, context, dryRun: process.env.DRY_RUN !== 'false' });
+            await core.summary.addHeading('첫 답변 시간 점검').addRaw(result).write();
