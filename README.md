@@ -22,6 +22,13 @@ Node.js 22.13 이상이 필요합니다. 미리보기: http://127.0.0.1:4173
 - [Actions 실행 내역](https://github.com/e-chang0/StressFit/actions/workflows/ci-cd.yml)
 - [과제 설명 및 제출 안내](docs/ci-cd-assignment.md)
 
+## 문서와 의견 나누기
+
+- [Getting Started](https://github.com/e-chang0/StressFit/wiki/Getting-Started) · [Development Guide](https://github.com/e-chang0/StressFit/wiki/Development-Guide) · [Troubleshooting](https://github.com/e-chang0/StressFit/wiki/Troubleshooting)
+- [기술 결정 기록(ADR)](docs/adr/README.md) · [자동 응답·SLA·주간 요약 초안](docs/community/automation.md)
+- [Discussions 이용 방법](docs/community/discussions-guide.md) · [진행 중인 RFC-0001](https://github.com/e-chang0/StressFit/discussions/14)
+- [과제 확인 기록](docs/community/assignment-status.md)
+
 ## 1. 프로젝트 개요
 
 - **프로젝트명:** StressFit
@@ -155,5 +162,5 @@ StressFit/
 
 ## 10. 실행 계획
 
-현재 저장소는 제안서와 개발 환경의 첫 커밋 단계이다. 2주차부터 요구사항과 사용자 스토리를 구체화하고, 4주차까지 추천 규칙 및 데이터 구조를 확정한 뒤 기능 단위로 구현한다.
+현재 저장소에는 제안서, 작업 계획과 CI/CD 실습용 추천 데모가 있다. 전체 MVP는 요구사항과 데이터 구조를 보완한 뒤 기능 단위로 확장한다. 데모 실행 방법은 위의 CI/CD 실습 데모 안내에서 확인할 수 있다.
 
