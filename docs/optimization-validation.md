@@ -25,10 +25,14 @@
 | feature 브랜치 앱/CI 변경 | 6개 환경 성공, 배포 skipped | [41576906922](https://github.com/e-chang0/StressFit/actions/runs/41576906922) |
 | feature 브랜치 문서만 변경 | verify와 deploy 모두 skipped, 변경 판단·요약 성공 | [41576738394](https://github.com/e-chang0/StressFit/actions/runs/41576738394) |
 | main 앱 변경 | 6개 환경 및 Pages 배포 성공 | [41577055315](https://github.com/e-chang0/StressFit/actions/runs/41577055315) |
+| 문서 전용 PR | verify와 deploy 모두 skipped, 변경 판단·요약 성공 | [41577401193](https://github.com/e-chang0/StressFit/actions/runs/41577401193) |
+| main 문서 전용 변경 | verify와 deploy 모두 skipped, 변경 판단·요약 성공 | [41577506624](https://github.com/e-chang0/StressFit/actions/runs/41577506624) |
 
 main 앱 배포의 커밋은 `e8f497f8942c0528a73793d1cc7791c5179be35e`다. 최적화 코드는 [PR #18](https://github.com/e-chang0/StressFit/pull/18)로 main에 병합됐다. [배포 사이트](https://e-chang0.github.io/StressFit/).
 
-문서만 변경하는 이 검증 기록도 별도 PR과 main 실행으로 확인하고 그 링크를 추가한다. docs/ 변경은 앱 배포를 유발하지 않는다. 기존 커뮤니티용 Community Checks는 별도 워크플로우이므로 문서 변경에서도 실행될 수 있다.
+문서만 변경하는 [PR #19](https://github.com/e-chang0/StressFit/pull/19)와 병합 후 main 실행에서 실제 검사·배포 생략을 확인했다. docs/ 변경은 앱 배포를 유발하지 않는다. 기존 커뮤니티용 Community Checks는 별도 워크플로우이므로 문서 변경에서도 실행될 수 있다.
+
+공개 사이트의 HTML과 recommendation.js가 HTTP 200으로 응답하고 추천 화면·함수가 포함된 것도 확인했다. 이 검증 기록 보완은 문서만 변경하므로 게시된 앱을 다시 배포하지 않는다.
 
 ## 로컬 및 단위 검증
 
