@@ -14,6 +14,8 @@
 - [실측 원시 JSON](evidence/cache-benchmark.json)
 - [실측 실행 및 자동 생성 보고서](https://github.com/e-chang0/StressFit/actions/runs/41576340418)
 - [구현 PR #18](https://github.com/e-chang0/StressFit/pull/18)
+- [요구사항별 검증 기록과 제출용 설명](optimization-validation.md)
+- [최적화 전후 코드 비교](https://github.com/e-chang0/StressFit/compare/2931e4770e61afe3bb4b97ead437d77f6b9165e1...e8f497f8942c0528a73793d1cc7791c5179be35e)
 
 전체 verification job 평균도 13.333초에서 8.000초로 40.00% 줄었지만, 공유 러너의 액션 준비 시간 등도 포함하므로 캐시만의 효과로 단정하지 않는다. 통제된 비교 구간과 원시 표본은 실측 리포트를 참고한다.
 
