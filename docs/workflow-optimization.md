@@ -10,7 +10,12 @@
 - [캐시 벤치마크](../.github/workflows/cache-benchmark.yml)
 - [Actions 실행 목록](https://github.com/e-chang0/StressFit/actions)
 
-실측 보고서와 검증 실행 링크는 아래 문서에서 함께 관리한다.
+- [캐싱 전후 실측 비교 리포트](cache-performance-report.md): 의존성 준비 37.88%, 측정 구간 파이프라인 26.22% 단축
+- [실측 원시 JSON](evidence/cache-benchmark.json)
+- [실측 실행 및 자동 생성 보고서](https://github.com/e-chang0/StressFit/actions/runs/41576340418)
+- [구현 PR #18](https://github.com/e-chang0/StressFit/pull/18)
+
+전체 verification job 평균도 13.333초에서 8.000초로 40.00% 줄었지만, 공유 러너의 액션 준비 시간 등도 포함하므로 캐시만의 효과로 단정하지 않는다. 통제된 비교 구간과 원시 표본은 실측 리포트를 참고한다.
 
 ## 전후 비교
 

@@ -1,5 +1,7 @@
 # GitHub Actions 기반 기본 CI/CD 구축
 
+> 이 문서는 기본 CI/CD 구축 당시의 4개 Matrix와 아티팩트 전달 구조를 설명한 기록이다. 이후 최적화 과제의 6개 Matrix·재사용·캐싱·선택적 배포 및 실측 결과는 [워크플로우 최적화](workflow-optimization.md)와 [성능 비교 보고서](cache-performance-report.md)를 참고한다.
+
 ## 1. 프로젝트 선택 이유와 구현 범위
 
 StressFit은 스트레스 수준과 운동 여건에 맞는 루틴을 추천하는 학기 프로젝트다.
@@ -11,7 +13,7 @@ HTML/CSS/JavaScript, Node.js, ESLint, Node 내장 테스트 도구만 사용해 
 ## 2. 제출 링크
 
 - 저장소: https://github.com/e-chang0/StressFit
-- Workflow YAML: https://github.com/e-chang0/StressFit/blob/main/.github/workflows/ci-cd.yml
+- Workflow YAML: https://github.com/e-chang0/StressFit/blob/feature/basic-cicd/.github/workflows/ci-cd.yml
 - Actions 실행 목록: https://github.com/e-chang0/StressFit/actions/workflows/ci-cd.yml
 
 배포에는 Pages 설정과 main 반영이 필요하다. 실행 건별 성공 여부는 Actions에서 확인한다.
@@ -77,8 +79,6 @@ feature 브랜치와 PR에서는 Build/Test만 실행하고 Deploy는 건너뛴�
 
 `stressfit-build`는 실행별로 분리되며 7일 보관한다. 제출 시 코드와 실행 로그 링크는 남지만,
 아티팩트 자체는 보관 기간 후 삭제될 수 있으므로 필요하면 기간 내 다운로드한다.
-Pages용 아티팩트는 `github-pages-${{ github.run_attempt }}`로 이름을 지정한다.
-실패 작업을 재실행해도 이전 차수의 아티팩트와 충돌하지 않도록 하기 위해서다.
 
 ## 6. Secrets와 권한
 
