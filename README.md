@@ -18,7 +18,7 @@ npm run preview
 Node.js 22.13 이상이 필요합니다. 미리보기: http://127.0.0.1:4173
 테스트는 `dist/`를 사용하므로 먼저 빌드해야 합니다.
 
-- [워크플로우 YAML](https://github.com/e-chang0/StressFit/blob/feature/basic-cicd/.github/workflows/ci-cd.yml)
+- [워크플로우 YAML](https://github.com/e-chang0/StressFit/blob/main/.github/workflows/ci-cd.yml)
 - [Actions 실행 내역](https://github.com/e-chang0/StressFit/actions/workflows/ci-cd.yml)
 - [과제 설명 및 제출 안내](docs/ci-cd-assignment.md)
 
