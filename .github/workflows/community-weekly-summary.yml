@@ -1,0 +1,30 @@
+name: Community Weekly Summary (Draft)
+on:
+  schedule:
+    - cron: '23 0 * * 1' # 매주 월요일 09:23 KST, 지연될 수 있음
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: read
+jobs:
+  summary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require('node:fs');
+            const { weeklySummary } = require('./scripts/community.cjs');
+            const report = await weeklySummary({ github, context });
+            fs.mkdirSync('reports/community', { recursive: true });
+            fs.writeFileSync('reports/community/weekly-summary.md', report);
+            await core.summary.addRaw(report).write();
+      - uses: actions/upload-artifact@v4
+        with:
+          name: community-weekly-summary-${{ github.run_id }}
+          path: reports/community/weekly-summary.md
+          retention-days: 30

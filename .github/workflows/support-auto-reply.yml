@@ -1,0 +1,40 @@
+name: Support Auto Reply (Draft)
+on:
+  issues:
+    types: [opened, reopened, labeled]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: '미리보기 또는 안내를 작성할 support 이슈 번호'
+        required: true
+        type: number
+      dry_run:
+        description: 'true이면 댓글 없이 미리보기만 표시'
+        default: true
+        type: boolean
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: support-reply-${{ github.event.issue.number || inputs.issue_number }}
+  cancel-in-progress: false
+jobs:
+  reply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/github-script@v8
+        env:
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || github.event_name != 'workflow_dispatch' && vars.COMMUNITY_AUTOMATION_ENABLED != 'true' }}
+        with:
+          script: |
+            const { autoReply } = require('./scripts/community.cjs');
+            const issue = context.payload.issue || (await github.rest.issues.get({
+              ...context.repo, issue_number: Number(process.env.ISSUE_NUMBER)
+            })).data;
+            const result = await autoReply({ github, context, issue, dryRun: process.env.DRY_RUN !== 'false' });
+            await core.summary.addHeading('자동 응답').addRaw(result).write();
