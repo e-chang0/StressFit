@@ -20,7 +20,7 @@ npm run preview
 Node.js 22.13 이상이 필요합니다. 미리보기: http://127.0.0.1:4173
 테스트는 `dist/`를 사용하므로 먼저 빌드해야 합니다.
 
-- [워크플로우 YAML](https://github.com/e-chang0/StressFit/blob/feature/basic-cicd/.github/workflows/ci-cd.yml)
+- [워크플로우 YAML](https://github.com/e-chang0/StressFit/blob/main/.github/workflows/ci-cd.yml)
 - [Actions 실행 내역](https://github.com/e-chang0/StressFit/actions/workflows/ci-cd.yml)
 - [과제 설명 및 제출 안내](docs/ci-cd-assignment.md)
 
@@ -158,4 +158,3 @@ StressFit/
 ## 10. 실행 계획
 
 현재 저장소는 제안서와 개발 환경의 첫 커밋 단계이다. 2주차부터 요구사항과 사용자 스토리를 구체화하고, 4주차까지 추천 규칙 및 데이터 구조를 확정한 뒤 기능 단위로 구현한다.
-
