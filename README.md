@@ -4,14 +4,17 @@
 
 ## CI/CD 실습 데모
 
+워크플로우 최적화 과제: [구현과 전후 비교](docs/workflow-optimization.md).
+[캐시 실측 보고서](docs/cache-performance-report.md): 동일 환경 3회 평균에서 의존성 준비 37.88%, 검증 파이프라인 측정 구간 26.22% 단축.
+일반 CI는 Ubuntu/Windows/macOS × Node.js 22/24에서 공통 검증을 재사용하고,
+문서만 변경하면 검사·배포를 생략합니다. 캐시 벤치마크는 같은 코드의 미사용/최초 저장/적중을 구분해 측정합니다.
+
 현재 실행 코드는 CI/CD 학습을 위한 **HTML/CSS/JavaScript 기반 운동 추천 데모**입니다.
 아래 기술 스택과 전체 MVP는 향후 개발 계획이며, React·FastAPI·DB는 아직 구현하지 않았습니다.
 
 ```bash
 npm ci
-npm run lint
-npm run build
-npm test
+npm run verify
 npm run preview
 ```
 

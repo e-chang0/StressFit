@@ -1,5 +1,7 @@
 # GitHub Actions 기반 기본 CI/CD 구축
 
+> 이 문서는 기본 CI/CD 구축 당시의 4개 Matrix와 아티팩트 전달 구조를 설명한 기록이다. 이후 최적화 과제의 6개 Matrix·재사용·캐싱·선택적 배포 및 실측 결과는 [워크플로우 최적화](workflow-optimization.md)와 [성능 비교 보고서](cache-performance-report.md)를 참고한다.
+
 ## 1. 프로젝트 선택 이유와 구현 범위
 
 StressFit은 스트레스 수준과 운동 여건에 맞는 루틴을 추천하는 학기 프로젝트다.

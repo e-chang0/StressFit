@@ -1,0 +1,62 @@
+name: Prepare StressFit Node environment
+description: Set up Node, restore exact dependencies, and install on a cache miss.
+inputs:
+  node-version:
+    description: Node.js major version
+    default: '24'
+  cache:
+    description: Enable the dependency cache
+    default: 'true'
+  cache-namespace:
+    description: Change this to invalidate the cache or isolate a benchmark
+    default: stressfit-deps-v1
+  expect-cache:
+    description: any, miss, or hit; benchmarks fail on an unexpected state
+    default: any
+outputs:
+  cache-hit:
+    description: Exact dependency cache hit
+    value: ${{ steps.cache.outputs.cache-hit || 'false' }}
+  cache-key:
+    description: Cache key including platform, runtime, and lockfile
+    value: ${{ steps.key.outputs.key }}
+  node-version:
+    description: Actual Node.js runtime
+    value: ${{ steps.node.outputs.node-version }}
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v7
+      id: node
+      with:
+        node-version: ${{ inputs.node-version }}
+        package-manager-cache: false
+    - name: Start dependency measurement
+      shell: bash
+      run: node scripts/ci-timing.js start dependencies
+    - name: Compute exact dependency key
+      id: key
+      shell: bash
+      env:
+        CACHE_NAMESPACE: ${{ inputs.cache-namespace }}
+        NODE_RUNTIME: ${{ steps.node.outputs.node-version }}
+      run: node scripts/ci-timing.js key
+    - uses: actions/cache@v6
+      id: cache
+      if: inputs.cache == 'true'
+      with:
+        path: node_modules
+        key: ${{ steps.key.outputs.key }}
+    - name: Check cache state
+      shell: bash
+      env:
+        EXPECT_CACHE: ${{ inputs.expect-cache }}
+        CACHE_HIT: ${{ steps.cache.outputs.cache-hit || 'false' }}
+      run: node scripts/ci-timing.js expect
+    - name: Install locked dependencies on miss
+      if: inputs.cache != 'true' || steps.cache.outputs.cache-hit != 'true'
+      shell: bash
+      run: npm ci --no-audit --no-fund --cache .npm-ci-cache
+    - name: Finish dependency measurement
+      shell: bash
+      run: node scripts/ci-timing.js finish dependencies
