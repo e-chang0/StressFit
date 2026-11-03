@@ -41,7 +41,7 @@ RFC는 2026-11-10까지 의견을 받는 중이다. 현재 다른 참여자의 �
 - [PR 최종 Community Checks](https://github.com/e-chang0/StressFit/actions/runs/41575461689): 성공
 - [PR 최종 기존 CI](https://github.com/e-chang0/StressFit/actions/runs/41575461619): Build·Lint와 Ubuntu/Windows의 Node 22/24 테스트 성공
 
-[PR #16](https://github.com/e-chang0/StressFit/pull/16)은 사용자 승인 후 main에 병합했다. 병합 커밋은 `2931e4770e61afe3bb4b97ead437d77f6b9165e1`이다.
+[PR #16](https://github.com/e-chang0/StressFit/pull/16)은 main에 병합했다.
 
 ## 자동화 초안의 실제 실행
 
