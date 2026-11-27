@@ -23,18 +23,15 @@ export function recommendRoutine({ stress, minutes, place, hasPain = false, isRa
   const duration = Math.min(minutes, 20);
   const moveIndoors = place === 'outdoor' && isRaining;
   const indoor = place === 'indoor' || moveIndoors;
-  if (stress >= 7) {
-    return {
-      title: indoor ? '가벼운 스트레칭' : '천천히 걷기',
-      intensity: '낮음',
-      duration,
-      reason: moveIndoors ? '비가 와서 실내 루틴을 골랐어요.' : '스트레스가 높은 날을 위한 가벼운 활동 데모입니다.',
-    };
-  }
+  const light = stress >= 7;
+  const routine = light
+    ? { title: indoor ? '가벼운 스트레칭' : '천천히 걷기', intensity: '낮음',
+      reason: '스트레스가 높은 날을 위한 가벼운 활동 데모입니다.' }
+    : { title: indoor ? '가벼운 맨몸 운동' : '편안한 속도로 걷기', intensity: '보통',
+      reason: '선택한 장소와 가용 시간에 맞춘 기본 루틴입니다.' };
   return {
-    title: indoor ? '가벼운 맨몸 운동' : '편안한 속도로 걷기',
-    intensity: '보통',
+    ...routine,
     duration,
-    reason: moveIndoors ? '비가 와서 실내 루틴을 골랐어요.' : '선택한 장소와 가용 시간에 맞춘 기본 루틴입니다.',
+    reason: moveIndoors ? '비가 와서 실내 루틴을 골랐어요.' : routine.reason,
   };
 }
