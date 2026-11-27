@@ -2,6 +2,7 @@
 export function recommendRoutine({
   stress, minutes, place, hasPain = false,
   isRaining = false, preferLight = false, hasBand = false, wantsStretch = false,
+  includePlan = false,
 }) {
   if (!Number.isInteger(stress) || stress < 1 || stress > 10) {
     throw new RangeError('스트레스는 1~10 사이 정수로 입력해 주세요.');
@@ -21,6 +22,7 @@ export function recommendRoutine({
       intensity: '휴식',
       duration: 0,
       reason: '통증이 있으면 운동을 멈추고 전문가와 상담해 주세요.',
+      ...(includePlan ? { steps: [] } : {}),
     };
   }
   const duration = Math.min(minutes, 20);
@@ -32,6 +34,13 @@ export function recommendRoutine({
     ...routine,
     duration,
     reason: explainRoutine(moveIndoors, preferLight && !wantsStretch, routine.reason),
+    ...(includePlan ? {
+      steps: [
+        { label: '준비', minutes: Math.floor(duration / 5) },
+        { label: '본운동', minutes: duration - 2 * Math.floor(duration / 5) },
+        { label: '마무리', minutes: Math.floor(duration / 5) },
+      ],
+    } : {}),
   };
 }
 
