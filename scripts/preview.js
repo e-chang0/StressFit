@@ -1,5 +1,6 @@
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
+import { pathToFileURL } from 'node:url';
 
 const files = {
   '/': ['index.html', 'text/html; charset=utf-8'],
@@ -7,8 +8,17 @@ const files = {
   '/style.css': ['style.css', 'text/css; charset=utf-8'],
   '/main.js': ['main.js', 'text/javascript; charset=utf-8'],
   '/recommendation.js': ['recommendation.js', 'text/javascript; charset=utf-8'],
+  '/lab.html': ['lab.html', 'text/html; charset=utf-8'],
+  '/lab.js': ['lab.js', 'text/javascript; charset=utf-8'],
+  '/features.js': ['features.js', 'text/javascript; charset=utf-8'],
+  '/analytics.js': ['analytics.js', 'text/javascript; charset=utf-8'],
+  '/storage.js': ['storage.js', 'text/javascript; charset=utf-8'],
+  '/rollout.js': ['rollout.js', 'text/javascript; charset=utf-8'],
+  '/config.json': ['config.json', 'application/json; charset=utf-8'],
+  '/rollout.json': ['rollout.json', 'application/json; charset=utf-8'],
 };
-createServer(async (request, response) => {
+export function createPreviewServer() {
+  return createServer(async (request, response) => {
   const path = new URL(request.url, 'http://localhost').pathname;
   if (path === '/health') {
     try {
@@ -30,4 +40,9 @@ createServer(async (request, response) => {
   } catch {
     response.writeHead(500).end('Run npm run build first.');
   }
-}).listen(process.env.PORT || 4173, process.env.HOST || '127.0.0.1', () => console.log('Server started'));
+  });
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  createPreviewServer().listen(process.env.PORT || 4173, process.env.HOST || '127.0.0.1', () => console.log('Server started'));
+}

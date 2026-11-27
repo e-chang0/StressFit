@@ -2,6 +2,15 @@
 
 > 사용자의 스트레스 상태와 운동 여건을 반영해, 지금 실천할 수 있는 맞춤형 운동을 추천하는 웹 서비스
 
+## 11주차 · Feature Flags 및 점진적 배포
+
+- [운동 추천 웹앱](https://e-chang0.github.io/StressFit/) · [실습실](https://e-chang0.github.io/StressFit/lab.html)
+- [구현과 제출 안내](docs/week11.md): 플래그 3개, 환경 변수/사용자 그룹 제어, A/B 2개 variant, 브라우저 이벤트 JSON 내보내기
+- [실험 로그](docs/evidence/week11/experiments.json) · [Canary HTTP 검증 로그](docs/evidence/week11/canary.json) · [롤아웃 설정](config/rollout.json)
+- `npm run evidence`: 로컬 HTTP 서버로 1→10→50→100% 승격과 10% 장애 시 자동 롤백 검증. [CI 실행 내역](https://github.com/e-chang0/StressFit/actions/workflows/week11.yml)
+
+브라우저 실습실의 Canary는 시뮬레이션이며, HTTP 검증은 로컬·CI에서 실행합니다. GitHub Pages 운영 트래픽을 분할하는 구성은 아닙니다.
+
 ## CI/CD 실습 데모
 
 워크플로우 최적화 과제: [구현과 전후 비교](docs/workflow-optimization.md).

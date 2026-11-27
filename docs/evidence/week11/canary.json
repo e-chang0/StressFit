@@ -1,0 +1,177 @@
+{
+  "generatedAt": "2026-11-27T18:30:48.372Z",
+  "healthy": {
+    "source": "local-http-integration",
+    "faultInjectedAt": null,
+    "policy": {
+      "stages": [
+        1,
+        10,
+        50,
+        100
+      ],
+      "stableVersion": "stable-v1",
+      "candidateVersion": "candidate-v2",
+      "minRequests": 100,
+      "maxErrorRate": 0.02,
+      "maxP95Ms": 250,
+      "probeTimeoutMs": 2000
+    },
+    "status": "promoted",
+    "activePercent": 100,
+    "activeVersion": "candidate-v2",
+    "history": [
+      {
+        "percent": 1,
+        "ok": true,
+        "reason": "healthy",
+        "sample": {
+          "healthOk": true,
+          "requests": 100,
+          "errors": 0,
+          "p95Ms": 11.92
+        }
+      },
+      {
+        "percent": 10,
+        "ok": true,
+        "reason": "healthy",
+        "sample": {
+          "healthOk": true,
+          "requests": 100,
+          "errors": 0,
+          "p95Ms": 3.34
+        }
+      },
+      {
+        "percent": 50,
+        "ok": true,
+        "reason": "healthy",
+        "sample": {
+          "healthOk": true,
+          "requests": 100,
+          "errors": 0,
+          "p95Ms": 3.75
+        }
+      },
+      {
+        "percent": 100,
+        "ok": true,
+        "reason": "healthy",
+        "sample": {
+          "healthOk": true,
+          "requests": 100,
+          "errors": 0,
+          "p95Ms": 2.37
+        }
+      }
+    ],
+    "rollback": null,
+    "stageTraffic": [
+      {
+        "percent": 1,
+        "total": 1000,
+        "candidate": 13,
+        "stable": 987,
+        "errors": 0
+      },
+      {
+        "percent": 10,
+        "total": 1000,
+        "candidate": 117,
+        "stable": 883,
+        "errors": 0
+      },
+      {
+        "percent": 50,
+        "total": 1000,
+        "candidate": 488,
+        "stable": 512,
+        "errors": 0
+      },
+      {
+        "percent": 100,
+        "total": 1000,
+        "candidate": 1000,
+        "stable": 0,
+        "errors": 0
+      }
+    ],
+    "afterDecision": {
+      "requests": 100,
+      "version": "candidate-v2",
+      "allSuccessful": true
+    }
+  },
+  "rollback": {
+    "source": "local-http-integration",
+    "faultInjectedAt": 10,
+    "policy": {
+      "stages": [
+        1,
+        10,
+        50,
+        100
+      ],
+      "stableVersion": "stable-v1",
+      "candidateVersion": "candidate-v2",
+      "minRequests": 100,
+      "maxErrorRate": 0.02,
+      "maxP95Ms": 250,
+      "probeTimeoutMs": 2000
+    },
+    "status": "rolled_back",
+    "activePercent": 0,
+    "activeVersion": "stable-v1",
+    "history": [
+      {
+        "percent": 1,
+        "ok": true,
+        "reason": "healthy",
+        "sample": {
+          "healthOk": true,
+          "requests": 100,
+          "errors": 0,
+          "p95Ms": 28.08
+        }
+      },
+      {
+        "percent": 10,
+        "ok": false,
+        "reason": "health_probe_failed",
+        "sample": {
+          "healthOk": false,
+          "requests": 100,
+          "errors": 100,
+          "p95Ms": 3.51
+        }
+      }
+    ],
+    "rollback": {
+      "from": 10,
+      "to": 0,
+      "reason": "health_probe_failed"
+    },
+    "stageTraffic": [
+      {
+        "percent": 1,
+        "total": 1000,
+        "candidate": 13,
+        "stable": 987,
+        "errors": 0
+      },
+      {
+        "percent": 10,
+        "total": 1000,
+        "candidate": 117,
+        "stable": 883,
+        "errors": 117
+      }
+    ],
+    "afterDecision": {
+      "requests": 100,
+      "version": "stable-v1",
+      "allSuccessful": true
+    }
+  }
+}

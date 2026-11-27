@@ -4,7 +4,9 @@ COPY package*.json ./
 RUN npm ci
 COPY public ./public
 COPY src ./src
+COPY config ./config
 COPY scripts/build.js ./scripts/build.js
+COPY scripts/flag-config.js ./scripts/flag-config.js
 RUN npm run build
 
 FROM node:24-alpine

@@ -1,0 +1,10 @@
+{
+  "environment": "production",
+  "rolloutPercent": 100,
+  "flags": {
+    "newResultCard": { "enabled": true, "audiences": ["general", "beta"] },
+    "detailedReason": { "enabled": true, "audiences": ["beta"] },
+    "completionLog": { "enabled": true, "audiences": ["general", "beta"] }
+  },
+  "experiment": { "id": "recommendation-cta-v1", "enabled": true, "variants": ["A", "B"] }
+}

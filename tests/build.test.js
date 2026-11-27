@@ -4,7 +4,7 @@ import { readFile, readdir } from 'node:fs/promises';
 
 test('배포 산출물에 화면과 실행 파일이 모두 포함된다', async () => {
   const files = await readdir(new URL('../dist/', import.meta.url));
-  assert.deepEqual(files.sort(), ['index.html', 'main.js', 'recommendation.js', 'style.css']);
+  assert.deepEqual(files.sort(), ['analytics.js', 'config.json', 'features.js', 'index.html', 'lab.html', 'lab.js', 'main.js', 'recommendation.js', 'rollout.js', 'rollout.json', 'storage.js', 'style.css']);
   for (const name of files) {
     const content = await readFile(new URL(`../dist/${name}`, import.meta.url), 'utf8');
     assert.ok(content.length > 0, `${name} must not be empty`);
