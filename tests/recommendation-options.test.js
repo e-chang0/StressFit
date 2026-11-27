@@ -4,6 +4,16 @@ import { recommendRoutine } from '../src/recommendation.js';
 
 const input = { stress: 5, minutes: 10, place: 'indoor' };
 
+test('스트레칭 목표를 고르면 장소나 밴드와 상관없이 스트레칭을 추천한다', () => {
+  const stretch = { ...input, wantsStretch: true, hasBand: true };
+  assert.equal(recommendRoutine(stretch).title, '전신 스트레칭');
+  assert.equal(recommendRoutine({ ...stretch, place: 'outdoor', stress: 8 }).intensity, '낮음');
+  assert.match(recommendRoutine({ ...stretch, place: 'outdoor' }).reason, /스트레칭을 목표로/);
+  assert.match(recommendRoutine({ ...stretch, place: 'outdoor', isRaining: true }).reason, /비가 와서 실내/);
+  assert.equal(recommendRoutine({ ...stretch, hasPain: true }).duration, 0);
+  assert.equal(recommendRoutine({ ...stretch, wantsStretch: false }).title, '밴드 운동');
+});
+
 test('밴드를 챙긴 경우 일반 강도의 실내 운동에만 밴드를 사용한다', () => {
   const withBand = { ...input, hasBand: true };
   assert.equal(recommendRoutine(withBand).title, '밴드 운동');
