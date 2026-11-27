@@ -4,6 +4,15 @@ import { recommendRoutine } from '../src/recommendation.js';
 
 const input = { stress: 5, minutes: 10, place: 'indoor' };
 
+test('밴드를 챙긴 경우 일반 강도의 실내 운동에만 밴드를 사용한다', () => {
+  const withBand = { ...input, hasBand: true };
+  assert.equal(recommendRoutine(withBand).title, '밴드 운동');
+  assert.match(recommendRoutine(withBand).reason, /밴드/);
+  assert.equal(recommendRoutine({ ...withBand, place: 'outdoor' }).title, '편안한 속도로 걷기');
+  assert.equal(recommendRoutine({ ...withBand, stress: 7 }).title, '가벼운 스트레칭');
+  assert.equal(recommendRoutine({ ...withBand, preferLight: true }).title, '가벼운 스트레칭');
+});
+
 test('가벼운 강도를 선택하면 스트레스가 낮아도 가벼운 운동을 추천한다', () => {
   const light = { ...input, preferLight: true };
   assert.equal(recommendRoutine(light).title, '가벼운 스트레칭');
