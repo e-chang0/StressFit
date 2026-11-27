@@ -4,8 +4,9 @@ import { pathToFileURL } from 'node:url';
 
 export function classifyChanges(files) {
   const app = path => /^(src\/|public\/|config\/)/.test(path) || ['package.json', 'package-lock.json', 'scripts/build.js', 'scripts/flag-config.js'].includes(path);
-  const ci = path => app(path) || /^(tests\/|scripts\/|\.github\/actions\/)/.test(path) ||
-    /^\.github\/workflows\/(ci-cd|reusable-ci|cache-benchmark)\.yml$/.test(path) || path === 'eslint.config.js';
+  const ci = path => app(path) || /^(tests\/|e2e\/|scripts\/|\.github\/actions\/)/.test(path) ||
+    /^\.github\/workflows\/(ci-cd|reusable-ci|cache-benchmark)\.yml$/.test(path) ||
+    ['eslint.config.js', 'playwright.config.js'].includes(path);
   return { ci: files.some(ci), deploy: files.some(app) };
 }
 export function comparisonRange(eventName, event) {

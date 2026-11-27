@@ -20,6 +20,9 @@ on:
       upload-build:
         type: boolean
         default: false
+      run-e2e:
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -52,8 +55,8 @@ jobs:
           FF_COMPLETION_LOG: ${{ vars.FF_COMPLETION_LOG || 'true' }}
           FF_ROLLOUT_PERCENT: ${{ vars.FF_ROLLOUT_PERCENT || '100' }}
           AB_ENABLED: ${{ vars.AB_ENABLED || 'true' }}
-      - name: Test
-        run: npm test
+      - name: Run tests and check 80% coverage
+        run: npm run test:coverage
       - name: Record pipeline metrics
         shell: bash
         env:
@@ -62,6 +65,21 @@ jobs:
           CACHE_KEY: ${{ steps.dependencies.outputs.cache-key }}
           NODE_RUNTIME: ${{ steps.dependencies.outputs.node-version }}
         run: node scripts/ci-timing.js report
+      - name: Install Chromium for Playwright
+        if: inputs.run-e2e
+        run: npx playwright install --with-deps chromium
+      - name: Run browser test
+        if: inputs.run-e2e
+        id: browser-test
+        run: npm run test:e2e
+      - name: Save browser failure screenshots
+        if: failure() && steps.browser-test.outcome == 'failure'
+        uses: actions/upload-artifact@v7
+        with:
+          name: stressfit-e2e-screenshots
+          path: test-results/**/*.png
+          if-no-files-found: warn
+          retention-days: 14
       - uses: actions/upload-artifact@v7
         if: inputs.upload-build
         with:

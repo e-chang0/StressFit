@@ -11,11 +11,14 @@
     "lint": "eslint .",
     "build": "node scripts/build.js",
     "test": "node --test",
-    "verify": "npm run lint && npm run build && npm test",
+    "test:coverage": "node --experimental-test-coverage --test-coverage-include=\"src/*.js\" --test-coverage-exclude=src/main.js --test-coverage-exclude=src/lab.js --test-coverage-lines=80 --test-coverage-branches=80 --test-coverage-functions=80 --test",
+    "test:e2e": "playwright test",
+    "verify": "npm run lint && npm run build && npm run test:coverage",
     "preview": "node scripts/preview.js",
     "evidence": "node scripts/week11-evidence.js"
   },
   "devDependencies": {
+    "@playwright/test": "1.65.1",
     "eslint": "10.14.0"
   }
 }

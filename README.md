@@ -2,6 +2,10 @@
 
 > 사용자의 스트레스 상태와 운동 여건을 반영해, 지금 실천할 수 있는 맞춤형 운동을 추천하는 웹 서비스
 
+## 12주차 · Shift-Left 테스트 자동화
+
+운동 추천에 새 기능 5개를 추가하고 GitHub Actions에서 단위 테스트 커버리지와 브라우저 화면을 확인합니다. [과제 설명, 커밋 및 실행 방법](docs/week12.md)
+
 ## 11주차 · Feature Flags 및 점진적 배포
 
 - [운동 추천 웹앱](https://e-chang0.github.io/StressFit/) · [실습실](https://e-chang0.github.io/StressFit/lab.html)
