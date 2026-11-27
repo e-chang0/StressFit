@@ -7,13 +7,14 @@
 - Render: `render.yaml`로 Docker 웹 서비스를 만든다. main의 CI 검사가 통과하면 Render가 이미지를 다시 빌드해 배포한다.
 - 상태 확인: Render가 `/health`를 확인한다. GitHub Actions도 30분마다 같은 주소를 검사하도록 만들었다.
 
-현재 외부 서비스 계정 연결 전이므로 Netlify 프리뷰와 Render 배포 성공 여부는 아직 확인하지 못했다.
+Netlify 프리뷰와 Render 배포는 각각 서비스 연결 및 실행 결과를 확인해야 한다.
 
 ## Netlify 연결
 
 1. Netlify에 가입하고 GitHub 저장소 `e-chang0/StressFit`을 연결한다.
 2. production 브랜치를 `main`으로 선택한다. 빌드 명령과 폴더는 `netlify.toml`을 사용한다.
 3. PR을 열고 Netlify의 Deploy Preview 검사에서 주소를 확인한다.
+4. PR이 Netlify 연결 전에 만들어졌다면 새 커밋을 올려 프리뷰 빌드를 확인한다.
 
 ## Render 연결
 
