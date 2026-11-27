@@ -33,6 +33,7 @@ Node.js 22.13 이상이 필요합니다. 미리보기: http://127.0.0.1:4173
 - [워크플로우 YAML](https://github.com/e-chang0/StressFit/blob/main/.github/workflows/ci-cd.yml)
 - [Actions 실행 내역](https://github.com/e-chang0/StressFit/actions/workflows/ci-cd.yml)
 - [과제 설명 및 제출 안내](docs/ci-cd-assignment.md)
+- [배포 자동화 설정](docs/deployment.md)
 
 ## 문서와 의견 나누기
 

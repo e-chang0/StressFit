@@ -1,5 +1,6 @@
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
+import { pathToFileURL } from 'node:url';
 
 const files = {
   '/': ['index.html', 'text/html; charset=utf-8'],
@@ -16,8 +17,19 @@ const files = {
   '/config.json': ['config.json', 'application/json; charset=utf-8'],
   '/rollout.json': ['rollout.json', 'application/json; charset=utf-8'],
 };
-createServer(async (request, response) => {
-  const file = files[new URL(request.url, 'http://localhost').pathname];
+export function createPreviewServer() {
+  return createServer(async (request, response) => {
+  const path = new URL(request.url, 'http://localhost').pathname;
+  if (path === '/health') {
+    try {
+      await readFile(new URL('../dist/index.html', import.meta.url));
+      response.writeHead(200, { 'Content-Type': 'application/json' }).end('{"status":"ok"}');
+    } catch {
+      response.writeHead(503).end('Build not found');
+    }
+    return;
+  }
+  const file = files[path];
   if (!file) {
     response.writeHead(404).end('Not found');
     return;
@@ -28,4 +40,9 @@ createServer(async (request, response) => {
   } catch {
     response.writeHead(500).end('Run npm run build first.');
   }
-}).listen(4173, '127.0.0.1', () => console.log('Preview: http://127.0.0.1:4173'));
+  });
+}
+
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  createPreviewServer().listen(process.env.PORT || 4173, process.env.HOST || '127.0.0.1', () => console.log('Server started'));
+}

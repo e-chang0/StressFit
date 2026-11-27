@@ -1,0 +1,29 @@
+name: Check Docker image
+on:
+  push:
+    branches: [main, 'feature/**']
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Build image
+        run: docker build -t stressfit:test .
+      - name: Check app and health endpoint
+        run: |
+          docker run -d --name stressfit -p 10000:10000 stressfit:test
+          for attempt in {1..15}; do
+            if curl --fail --silent http://localhost:10000/health && curl --fail --silent http://localhost:10000/ > /dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker logs stressfit
+          exit 1

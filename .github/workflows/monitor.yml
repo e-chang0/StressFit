@@ -1,0 +1,18 @@
+name: Check deployed service
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: ${{ vars.RENDER_HEALTH_URL != '' }}
+    steps:
+      - name: Check health endpoint
+        env:
+          HEALTH_URL: ${{ vars.RENDER_HEALTH_URL }}
+        run: |
+          curl --fail --silent --show-error --retry 2 --retry-delay 10 --max-time 90 "$HEALTH_URL"
