@@ -48,6 +48,7 @@ form.addEventListener('submit', (event) => {
       isRaining: form.elements.isRaining.checked,
       preferLight: form.elements.preferLight.checked,
       hasBand: form.elements.hasBand.checked,
+      wantsStretch: form.elements.wantsStretch.checked,
     });
     document.querySelector('#routine-title').textContent = routine.title;
     document.querySelector('#routine-detail').textContent =
