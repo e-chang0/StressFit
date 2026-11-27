@@ -4,6 +4,15 @@ import { recommendRoutine } from '../src/recommendation.js';
 
 const input = { stress: 5, minutes: 10, place: 'indoor' };
 
+test('가벼운 강도를 선택하면 스트레스가 낮아도 가벼운 운동을 추천한다', () => {
+  const light = { ...input, preferLight: true };
+  assert.equal(recommendRoutine(light).title, '가벼운 스트레칭');
+  assert.equal(recommendRoutine(light).intensity, '낮음');
+  assert.match(recommendRoutine(light).reason, /가벼운 강도를 선택/);
+  assert.equal(recommendRoutine({ ...light, place: 'outdoor' }).title, '천천히 걷기');
+  assert.equal(recommendRoutine({ ...light, preferLight: false }).intensity, '보통');
+});
+
 test('비가 오면 야외 운동 대신 실내 운동을 추천한다', () => {
   const rainy = { ...input, place: 'outdoor', isRaining: true };
   assert.equal(recommendRoutine(rainy).title, '가벼운 맨몸 운동');
