@@ -9,7 +9,17 @@ const files = {
   '/recommendation.js': ['recommendation.js', 'text/javascript; charset=utf-8'],
 };
 createServer(async (request, response) => {
-  const file = files[new URL(request.url, 'http://localhost').pathname];
+  const path = new URL(request.url, 'http://localhost').pathname;
+  if (path === '/health') {
+    try {
+      await readFile(new URL('../dist/index.html', import.meta.url));
+      response.writeHead(200, { 'Content-Type': 'application/json' }).end('{"status":"ok"}');
+    } catch {
+      response.writeHead(503).end('Build not found');
+    }
+    return;
+  }
+  const file = files[path];
   if (!file) {
     response.writeHead(404).end('Not found');
     return;
@@ -20,4 +30,4 @@ createServer(async (request, response) => {
   } catch {
     response.writeHead(500).end('Run npm run build first.');
   }
-}).listen(4173, '127.0.0.1', () => console.log('Preview: http://127.0.0.1:4173'));
+}).listen(process.env.PORT || 4173, process.env.HOST || '127.0.0.1', () => console.log('Server started'));

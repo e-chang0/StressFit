@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: stressfit-demo
+    runtime: docker
+    plan: free
+    branch: main
+    autoDeployTrigger: checksPass
+    healthCheckPath: /health
