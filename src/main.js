@@ -45,6 +45,7 @@ form.addEventListener('submit', (event) => {
       minutes: Number(form.elements.minutes.value),
       place: form.elements.place.value,
       hasPain: form.elements.hasPain.checked,
+      isRaining: form.elements.isRaining.checked,
     });
     document.querySelector('#routine-title').textContent = routine.title;
     document.querySelector('#routine-detail').textContent =
