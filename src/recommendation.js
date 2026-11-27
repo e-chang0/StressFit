@@ -34,14 +34,17 @@ export function recommendRoutine({
     ...routine,
     duration,
     reason: explainRoutine(moveIndoors, preferLight && !wantsStretch, routine.reason),
-    ...(includePlan ? {
-      steps: [
-        { label: '준비', minutes: Math.floor(duration / 5) },
-        { label: '본운동', minutes: duration - 2 * Math.floor(duration / 5) },
-        { label: '마무리', minutes: Math.floor(duration / 5) },
-      ],
-    } : {}),
+    ...(includePlan ? { steps: buildSteps(duration) } : {}),
   };
+}
+
+function buildSteps(duration) {
+  const transition = Math.floor(duration / 5);
+  return [
+    { label: '준비', minutes: transition },
+    { label: '본운동', minutes: duration - 2 * transition },
+    { label: '마무리', minutes: transition },
+  ];
 }
 
 function chooseRoutine({ indoor, light, hasBand, wantsStretch }) {
