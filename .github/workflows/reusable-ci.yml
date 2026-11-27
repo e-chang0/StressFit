@@ -45,6 +45,13 @@ jobs:
         run: npm run lint
       - name: Build
         run: npm run build
+        env:
+          APP_ENV: ${{ vars.APP_ENV || 'production' }}
+          FF_NEW_RESULT_CARD: ${{ vars.FF_NEW_RESULT_CARD || 'true' }}
+          FF_DETAILED_REASON: ${{ vars.FF_DETAILED_REASON || 'true' }}
+          FF_COMPLETION_LOG: ${{ vars.FF_COMPLETION_LOG || 'true' }}
+          FF_ROLLOUT_PERCENT: ${{ vars.FF_ROLLOUT_PERCENT || '100' }}
+          AB_ENABLED: ${{ vars.AB_ENABLED || 'true' }}
       - name: Test
         run: npm test
       - name: Record pipeline metrics

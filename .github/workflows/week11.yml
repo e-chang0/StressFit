@@ -1,0 +1,32 @@
+name: Week 11 flags and Canary evidence
+on:
+  push:
+    branches: [main, 'feature/**']
+    paths: ['src/**', 'config/**', 'scripts/**', 'tests/**', 'package*.json', '.github/workflows/week11.yml']
+  pull_request:
+    branches: [main]
+    paths: ['src/**', 'config/**', 'scripts/**', 'tests/**', 'package*.json', '.github/workflows/week11.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: week11-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Verify actual local HTTP Canary and automatic rollback
+        run: npm run evidence
+      - uses: actions/upload-artifact@v7
+        with:
+          name: week11-experiment-canary-evidence
+          path: docs/evidence/week11/*.json
+          if-no-files-found: error

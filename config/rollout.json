@@ -1,0 +1,9 @@
+{
+  "stages": [1, 10, 50, 100],
+  "stableVersion": "stable-v1",
+  "candidateVersion": "candidate-v2",
+  "minRequests": 100,
+  "maxErrorRate": 0.02,
+  "maxP95Ms": 250,
+  "probeTimeoutMs": 2000
+}

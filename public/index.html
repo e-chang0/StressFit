@@ -9,7 +9,7 @@
   </head>
   <body>
     <main>
-      <header><a class="brand" href="./">StressFit<span>●</span></a><span class="tag">추천 기능 데모</span></header>
+      <header><a class="brand" href="./">StressFit<span>●</span></a><a class="tag" href="./lab.html">11주차 실습실 ↗</a></header>
       <section class="intro">
         <p class="eyebrow">MOVE AT YOUR OWN PACE</p>
         <h1>오늘의 나에게 맞는<br>작은 움직임.</h1>
@@ -34,13 +34,20 @@
           <p>왼쪽에 오늘의 상태를 입력하면<br>이곳에서 추천 루틴을 확인할 수 있어요.</p>
           <div id="result" hidden>
             <p class="result-label">오늘의 추천</p>
+            <span id="result-badge" class="tag" hidden>오늘의 작은 목표</span>
             <h3 id="routine-title"></h3>
             <p id="routine-detail"></p>
             <p id="routine-reason"></p>
+            <p id="extra-reason" hidden>추천은 입력한 스트레스 수준·가용 시간·장소를 함께 반영해요. 부담 없는 속도로 시작하고 몸이 불편하면 멈춰 주세요.</p>
+            <button id="complete-routine" type="button" hidden>이 루틴을 완료했어요</button>
           </div>
           <p class="notice">학습용 규칙 기반 데모이며 의료 진단이나 치료를 제공하지 않습니다.</p>
         </section>
       </div>
+      <section id="completion-section" class="card completion" hidden>
+        <h2>작은 실천이 쌓이고 있어요.</h2>
+        <p id="completion-count"></p>
+      </section>
       <footer>StressFit · 오늘의 상태에 맞춘 작은 움직임 · 입력 정보는 서버에 저장하지 않습니다.</footer>
     </main>
   </body>

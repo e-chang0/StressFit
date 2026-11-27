@@ -30,3 +30,33 @@ h3 { font-size: 23px; margin: 9px 0; }
 #error { color: #a13434; margin: 8px 0 0; }
 footer { margin: 26px 0 5px; color: #6b7b70; font-size: 11px; }
 @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } main { padding: 22px 18px; } .card { padding: 23px; } }
+/* Week 11: reuse the existing calm green palette. */
+[hidden] { display: none !important; }
+a { color: #315c45; text-underline-offset: 4px; }
+.tag { text-decoration: none; }
+input:not([type]), input[type="text"] { width: 100%; border: 1px solid #cdd8ce; border-radius: 8px; padding: 12px; font: inherit; }
+button:disabled { opacity: .55; cursor: default; }
+.completion, .lab-section { margin-top: 24px; }
+.completion h2 { margin-bottom: 6px; }
+.result-v2 { border-left: 5px solid #315c45; box-shadow: 0 6px 18px #315c4510; }
+.result-v2 h3 { font-size: 27px; }
+#extra-reason { border-top: 1px solid #dce4db; padding-top: 12px; }
+.flag-list { list-style: none; padding: 0; margin: 22px 0; }
+.flag-list li { border-bottom: 1px solid #e5eee3; padding: 12px 0; font-size: 13px; }
+.flag-list strong { display: inline-block; min-width: 40px; }
+.on { color: #226d45; }
+.off, #lab-error { color: #a13434; }
+.variant { background: #eaf0e5; padding: 14px; border-radius: 8px; overflow-wrap: anywhere; }
+.section-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.section-heading h2 { margin: 0; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.actions button { width: auto; font-size: 13px; }
+.secondary { color: #315c45; background: #eaf0e5; width: auto; }
+.secondary:hover { background: #dce7d5; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th, td { text-align: left; padding: 11px 10px; border-bottom: 1px solid #e5eee3; max-width: 240px; overflow-wrap: anywhere; }
+th { color: #567a5f; white-space: nowrap; }
+.stages { display: flex; gap: 12px; flex-wrap: wrap; padding: 0; list-style: none; }
+.stages li { background: #f5f7f2; border-radius: 8px; padding: 14px; font-size: 13px; }
+code { overflow-wrap: anywhere; }

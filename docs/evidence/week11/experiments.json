@@ -1,0 +1,249 @@
+{
+  "generatedAt": "2026-11-27T18:30:48.372Z",
+  "source": "scripted-core-verification",
+  "note": "Synthetic users exercising the same tracker and allocator as the browser; not production traffic.",
+  "profiles": [
+    {
+      "id": "scripted-general-2",
+      "audience": "general",
+      "variant": "A",
+      "flags": {
+        "newResultCard": {
+          "enabled": true,
+          "reason": "대상·롤아웃 조건 충족"
+        },
+        "detailedReason": {
+          "enabled": false,
+          "reason": "대상 사용자 아님"
+        },
+        "completionLog": {
+          "enabled": true,
+          "reason": "대상·롤아웃 조건 충족"
+        }
+      },
+      "reloadAssignmentConsistent": true
+    },
+    {
+      "id": "scripted-general-0",
+      "audience": "general",
+      "variant": "B",
+      "flags": {
+        "newResultCard": {
+          "enabled": true,
+          "reason": "대상·롤아웃 조건 충족"
+        },
+        "detailedReason": {
+          "enabled": false,
+          "reason": "대상 사용자 아님"
+        },
+        "completionLog": {
+          "enabled": true,
+          "reason": "대상·롤아웃 조건 충족"
+        }
+      },
+      "reloadAssignmentConsistent": true
+    },
+    {
+      "id": "scripted-beta-1",
+      "audience": "beta",
+      "variant": "A",
+      "flags": {
+        "newResultCard": {
+          "enabled": true,
+          "reason": "대상·롤아웃 조건 충족"
+        },
+        "detailedReason": {
+          "enabled": true,
+          "reason": "대상·롤아웃 조건 충족"
+        },
+        "completionLog": {
+          "enabled": true,
+          "reason": "대상·롤아웃 조건 충족"
+        }
+      },
+      "reloadAssignmentConsistent": true
+    },
+    {
+      "id": "scripted-beta-0",
+      "audience": "beta",
+      "variant": "B",
+      "flags": {
+        "newResultCard": {
+          "enabled": true,
+          "reason": "대상·롤아웃 조건 충족"
+        },
+        "detailedReason": {
+          "enabled": true,
+          "reason": "대상·롤아웃 조건 충족"
+        },
+        "completionLog": {
+          "enabled": true,
+          "reason": "대상·롤아웃 조건 충족"
+        }
+      },
+      "reloadAssignmentConsistent": true
+    }
+  ],
+  "events": [
+    {
+      "schemaVersion": 1,
+      "eventId": "b9ca0427-69d1-44c2-8f4b-61dc89f92178",
+      "timestamp": "2026-11-27T18:30:48.374Z",
+      "event": "experiment_exposure",
+      "userId": "scripted-general-2",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "307d4490-75ea-4938-9b70-cccfd71fa58d",
+      "timestamp": "2026-11-27T18:30:48.374Z",
+      "event": "recommend_click",
+      "userId": "scripted-general-2",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "442e6a00-5787-463d-9ea7-ab4861f3a240",
+      "timestamp": "2026-11-27T18:30:48.374Z",
+      "event": "recommend_success",
+      "userId": "scripted-general-2",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "7ecdd0ef-a8a1-426a-8b58-ea56baa1db28",
+      "timestamp": "2026-11-27T18:30:48.374Z",
+      "event": "routine_complete",
+      "userId": "scripted-general-2",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "296c6046-388e-4fd4-bf63-27d9e6f7e7ea",
+      "timestamp": "2026-11-27T18:30:48.375Z",
+      "event": "experiment_exposure",
+      "userId": "scripted-general-0",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "5585e0a4-a5f5-4cc0-8e20-e11e27db7c0e",
+      "timestamp": "2026-11-27T18:30:48.375Z",
+      "event": "recommend_click",
+      "userId": "scripted-general-0",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "68ea7a59-e066-4079-ad7b-8d59b43b7b43",
+      "timestamp": "2026-11-27T18:30:48.375Z",
+      "event": "recommend_success",
+      "userId": "scripted-general-0",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "4d4f74bd-a777-4fa6-a702-5a1432e04807",
+      "timestamp": "2026-11-27T18:30:48.375Z",
+      "event": "routine_complete",
+      "userId": "scripted-general-0",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "df4a59bf-d835-47a8-91f2-c86e052043e2",
+      "timestamp": "2026-11-27T18:30:48.375Z",
+      "event": "experiment_exposure",
+      "userId": "scripted-beta-1",
+      "audience": "beta",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "41db4074-f738-40fc-84b8-cddeac83ff20",
+      "timestamp": "2026-11-27T18:30:48.375Z",
+      "event": "recommend_click",
+      "userId": "scripted-beta-1",
+      "audience": "beta",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "39b85a70-b09f-4331-8838-57e7cebd708f",
+      "timestamp": "2026-11-27T18:30:48.375Z",
+      "event": "recommend_success",
+      "userId": "scripted-beta-1",
+      "audience": "beta",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "5397234d-0469-43e8-bb3f-8973d4c0adb4",
+      "timestamp": "2026-11-27T18:30:48.375Z",
+      "event": "routine_complete",
+      "userId": "scripted-beta-1",
+      "audience": "beta",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "832580aa-987e-4580-8891-33261e0b5454",
+      "timestamp": "2026-11-27T18:30:48.375Z",
+      "event": "experiment_exposure",
+      "userId": "scripted-beta-0",
+      "audience": "beta",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "404c9856-09a6-48e6-9360-14be9a28f958",
+      "timestamp": "2026-11-27T18:30:48.375Z",
+      "event": "recommend_click",
+      "userId": "scripted-beta-0",
+      "audience": "beta",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "fb2ca6ba-29be-4d9e-a265-b6492f16b772",
+      "timestamp": "2026-11-27T18:30:48.375Z",
+      "event": "recommend_success",
+      "userId": "scripted-beta-0",
+      "audience": "beta",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "e3e95ff1-e147-4c68-85e1-d2007bc9524a",
+      "timestamp": "2026-11-27T18:30:48.375Z",
+      "event": "routine_complete",
+      "userId": "scripted-beta-0",
+      "audience": "beta",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    }
+  ]
+}

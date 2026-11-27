@@ -12,7 +12,8 @@
     "build": "node scripts/build.js",
     "test": "node --test",
     "verify": "npm run lint && npm run build && npm test",
-    "preview": "node scripts/preview.js"
+    "preview": "node scripts/preview.js",
+    "evidence": "node scripts/week11-evidence.js"
   },
   "devDependencies": {
     "eslint": "10.14.0"

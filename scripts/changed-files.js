@@ -3,7 +3,7 @@ import { appendFileSync, readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 
 export function classifyChanges(files) {
-  const app = path => /^(src\/|public\/)/.test(path) || ['package.json', 'package-lock.json', 'scripts/build.js'].includes(path);
+  const app = path => /^(src\/|public\/|config\/)/.test(path) || ['package.json', 'package-lock.json', 'scripts/build.js', 'scripts/flag-config.js'].includes(path);
   const ci = path => app(path) || /^(tests\/|scripts\/|\.github\/actions\/)/.test(path) ||
     /^\.github\/workflows\/(ci-cd|reusable-ci|cache-benchmark)\.yml$/.test(path) || path === 'eslint.config.js';
   return { ci: files.some(ci), deploy: files.some(app) };
@@ -24,7 +24,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
   const event = JSON.parse(readFileSync(process.env.GITHUB_EVENT_PATH, 'utf8'));
   const range = comparisonRange(process.env.GITHUB_EVENT_NAME, event);
   const files = changedFiles(range);
-  const result = classifyChanges(files);
+  // A manual run also rebuilds config after repository Actions Variables change.
+  const result = process.env.GITHUB_EVENT_NAME === 'workflow_dispatch' ? { ci: true, deploy: true } : classifyChanges(files);
   console.log(JSON.stringify({ range, files, ...result }, null, 2));
   if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT, `ci=${result.ci}\ndeploy=${result.deploy}\n`);
   if (process.env.GITHUB_STEP_SUMMARY) appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Changed file decision\n\nCompared ${files.length} paths. CI: **${result.ci}**. App deployment candidate: **${result.deploy}**.\n\nPRs use base/head; pushes use before/after. Deletions and both sides of renames are included.\n`);

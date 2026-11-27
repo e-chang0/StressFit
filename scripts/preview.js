@@ -7,6 +7,14 @@ const files = {
   '/style.css': ['style.css', 'text/css; charset=utf-8'],
   '/main.js': ['main.js', 'text/javascript; charset=utf-8'],
   '/recommendation.js': ['recommendation.js', 'text/javascript; charset=utf-8'],
+  '/lab.html': ['lab.html', 'text/html; charset=utf-8'],
+  '/lab.js': ['lab.js', 'text/javascript; charset=utf-8'],
+  '/features.js': ['features.js', 'text/javascript; charset=utf-8'],
+  '/analytics.js': ['analytics.js', 'text/javascript; charset=utf-8'],
+  '/storage.js': ['storage.js', 'text/javascript; charset=utf-8'],
+  '/rollout.js': ['rollout.js', 'text/javascript; charset=utf-8'],
+  '/config.json': ['config.json', 'application/json; charset=utf-8'],
+  '/rollout.json': ['rollout.json', 'application/json; charset=utf-8'],
 };
 createServer(async (request, response) => {
   const file = files[new URL(request.url, 'http://localhost').pathname];
