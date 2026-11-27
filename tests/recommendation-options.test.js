@@ -4,6 +4,17 @@ import { recommendRoutine } from '../src/recommendation.js';
 
 const input = { stress: 5, minutes: 10, place: 'indoor' };
 
+test('운동을 준비, 본운동, 마무리로 나누고 휴식일에는 표시하지 않는다', () => {
+  for (const [minutes, expected] of [[5, [1, 3, 1]], [10, [2, 6, 2]], [19, [3, 13, 3]], [30, [4, 12, 4]]]) {
+    const { duration, steps } = recommendRoutine({ ...input, minutes, includePlan: true });
+    assert.deepEqual(steps?.map(step => step.label), ['준비', '본운동', '마무리']);
+    assert.deepEqual(steps.map(step => step.minutes), expected);
+    assert.equal(steps.reduce((sum, step) => sum + step.minutes, 0), duration);
+  }
+  assert.deepEqual(recommendRoutine({ ...input, hasPain: true, includePlan: true }).steps, []);
+  assert.equal(recommendRoutine(input).steps, undefined);
+});
+
 test('스트레칭 목표를 고르면 장소나 밴드와 상관없이 스트레칭을 추천한다', () => {
   const stretch = { ...input, wantsStretch: true, hasBand: true };
   assert.equal(recommendRoutine(stretch).title, '전신 스트레칭');
