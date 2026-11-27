@@ -1,5 +1,5 @@
 // CI 실습용 규칙 기반 데모입니다. 의료·운동 처방용 모델이 아닙니다.
-export function recommendRoutine({ stress, minutes, place, hasPain = false, isRaining = false }) {
+export function recommendRoutine({ stress, minutes, place, hasPain = false, isRaining = false, preferLight = false }) {
   if (!Number.isInteger(stress) || stress < 1 || stress > 10) {
     throw new RangeError('스트레스는 1~10 사이 정수로 입력해 주세요.');
   }
@@ -23,10 +23,10 @@ export function recommendRoutine({ stress, minutes, place, hasPain = false, isRa
   const duration = Math.min(minutes, 20);
   const moveIndoors = place === 'outdoor' && isRaining;
   const indoor = place === 'indoor' || moveIndoors;
-  const light = stress >= 7;
+  const light = stress >= 7 || preferLight;
   const routine = light
     ? { title: indoor ? '가벼운 스트레칭' : '천천히 걷기', intensity: '낮음',
-      reason: '스트레스가 높은 날을 위한 가벼운 활동 데모입니다.' }
+      reason: preferLight ? '가벼운 강도를 선택해 이 루틴을 골랐어요.' : '스트레스가 높은 날을 위한 가벼운 활동 데모입니다.' }
     : { title: indoor ? '가벼운 맨몸 운동' : '편안한 속도로 걷기', intensity: '보통',
       reason: '선택한 장소와 가용 시간에 맞춘 기본 루틴입니다.' };
   return {
