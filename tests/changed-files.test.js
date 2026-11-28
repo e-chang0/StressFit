@@ -8,7 +8,10 @@ test('app changes, including deleted source, require CI and deployment', () => {
   for (const path of ['src/main.js', 'public/style.css', 'package-lock.json', 'scripts/build.js']) assert.deepEqual(classifyChanges([path]), { ci: true, deploy: true });
 });
 test('test and workflow edits verify without deploying unchanged app', () => {
-  for (const path of ['tests/build.test.js', '.github/actions/setup-node/action.yml', '.github/workflows/reusable-ci.yml']) assert.deepEqual(classifyChanges([path]), { ci: true, deploy: false });
+  for (const path of ['tests/build.test.js', 'e2e/recommendation.spec.js', 'playwright.config.js',
+    '.github/actions/setup-node/action.yml', '.github/workflows/reusable-ci.yml']) {
+    assert.deepEqual(classifyChanges([path]), { ci: true, deploy: false });
+  }
 });
 test('PR compares base and head, not the synthetic merge commit', () => {
   assert.deepEqual(comparisonRange('pull_request', { pull_request: { base: { sha: 'base' }, head: { sha: 'head' } } }), { base: 'base', head: 'head' });

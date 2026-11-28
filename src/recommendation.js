@@ -1,5 +1,9 @@
 // CI 실습용 규칙 기반 데모입니다. 의료·운동 처방용 모델이 아닙니다.
-export function recommendRoutine({ stress, minutes, place, hasPain = false }) {
+export function recommendRoutine({
+  stress, minutes, place, hasPain = false,
+  isRaining = false, preferLight = false, hasBand = false, wantsStretch = false,
+  includePlan = false,
+}) {
   if (!Number.isInteger(stress) || stress < 1 || stress > 10) {
     throw new RangeError('스트레스는 1~10 사이 정수로 입력해 주세요.');
   }
@@ -18,21 +22,54 @@ export function recommendRoutine({ stress, minutes, place, hasPain = false }) {
       intensity: '휴식',
       duration: 0,
       reason: '통증이 있으면 운동을 멈추고 전문가와 상담해 주세요.',
+      ...(includePlan ? { steps: [] } : {}),
     };
   }
   const duration = Math.min(minutes, 20);
-  if (stress >= 7) {
+  const moveIndoors = place === 'outdoor' && isRaining;
+  const indoor = place === 'indoor' || moveIndoors;
+  const light = stress >= 7 || preferLight;
+  const routine = chooseRoutine({ indoor, light, hasBand, wantsStretch });
+  return {
+    ...routine,
+    duration,
+    reason: explainRoutine(moveIndoors, preferLight && !wantsStretch, routine.reason),
+    ...(includePlan ? { steps: buildSteps(duration) } : {}),
+  };
+}
+
+function buildSteps(duration) {
+  const transition = Math.floor(duration / 5);
+  return [
+    { label: '준비', minutes: transition },
+    { label: '본운동', minutes: duration - 2 * transition },
+    { label: '마무리', minutes: transition },
+  ];
+}
+
+function chooseRoutine({ indoor, light, hasBand, wantsStretch }) {
+  if (wantsStretch) {
+    return { title: '전신 스트레칭', intensity: '낮음', reason: '스트레칭을 목표로 골랐어요.' };
+  }
+  if (light) {
     return {
-      title: place === 'indoor' ? '가벼운 스트레칭' : '천천히 걷기',
+      title: indoor ? '가벼운 스트레칭' : '천천히 걷기',
       intensity: '낮음',
-      duration,
       reason: '스트레스가 높은 날을 위한 가벼운 활동 데모입니다.',
     };
   }
+  if (indoor && hasBand) {
+    return { title: '밴드 운동', intensity: '보통', reason: '선택한 운동 밴드를 사용하는 실내 루틴입니다.' };
+  }
   return {
-    title: place === 'indoor' ? '가벼운 맨몸 운동' : '편안한 속도로 걷기',
+    title: indoor ? '가벼운 맨몸 운동' : '편안한 속도로 걷기',
     intensity: '보통',
-    duration,
     reason: '선택한 장소와 가용 시간에 맞춘 기본 루틴입니다.',
   };
+}
+
+function explainRoutine(moveIndoors, preferLight, defaultReason) {
+  if (moveIndoors) return '비가 와서 실내 루틴을 골랐어요.';
+  if (preferLight) return '가벼운 강도를 선택해 이 루틴을 골랐어요.';
+  return defaultReason;
 }

@@ -1,9 +1,32 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-// 소스 대신 Build에서 전달받은 실제 배포 파일을 테스트합니다.
-import { recommendRoutine } from '../dist/recommendation.js';
+import { recommendRoutine } from '../src/recommendation.js';
 
 const input = { stress: 5, minutes: 10, place: 'indoor' };
+
+test('스트레스 6과 7 사이에서 추천이 바뀌고 결과 문구는 유지된다', () => {
+  assert.deepEqual(recommendRoutine({ ...input, stress: 6, minutes: 30, place: 'outdoor' }), {
+    title: '편안한 속도로 걷기',
+    intensity: '보통',
+    duration: 20,
+    reason: '선택한 장소와 가용 시간에 맞춘 기본 루틴입니다.',
+  });
+  assert.deepEqual(recommendRoutine({ ...input, stress: 7, minutes: 30, place: 'outdoor' }), {
+    title: '천천히 걷기',
+    intensity: '낮음',
+    duration: 20,
+    reason: '스트레스가 높은 날을 위한 가벼운 활동 데모입니다.',
+  });
+});
+
+test('높은 스트레스와 충분한 시간이 있어도 통증이 있으면 휴식을 먼저 안내한다', () => {
+  assert.deepEqual(recommendRoutine({ stress: 10, minutes: 60, place: 'outdoor', hasPain: true }), {
+    title: '오늘은 휴식을 선택해 주세요',
+    intensity: '휴식',
+    duration: 0,
+    reason: '통증이 있으면 운동을 멈추고 전문가와 상담해 주세요.',
+  });
+});
 
 test('높은 스트레스 + 실내에서는 낮은 강도의 스트레칭을 추천한다', () => {
   const result = recommendRoutine({ ...input, stress: 7 });

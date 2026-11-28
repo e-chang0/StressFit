@@ -40,6 +40,7 @@ jobs:
       os: ${{ matrix.os }}
       node-version: ${{ matrix.node }}
       upload-build: ${{ matrix.os == 'ubuntu-latest' && matrix.node == '24' }}
+      run-e2e: ${{ matrix.os == 'ubuntu-latest' && matrix.node == '24' }}
   deploy:
     name: Deploy changed app to Pages
     needs: [changes, verify]

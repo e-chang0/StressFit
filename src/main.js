@@ -45,11 +45,19 @@ form.addEventListener('submit', (event) => {
       minutes: Number(form.elements.minutes.value),
       place: form.elements.place.value,
       hasPain: form.elements.hasPain.checked,
+      isRaining: form.elements.isRaining.checked,
+      preferLight: form.elements.preferLight.checked,
+      hasBand: form.elements.hasBand.checked,
+      wantsStretch: form.elements.wantsStretch.checked,
+      includePlan: true,
     });
     document.querySelector('#routine-title').textContent = routine.title;
     document.querySelector('#routine-detail').textContent =
       `${routine.duration}분 · 강도 ${routine.intensity}`;
     document.querySelector('#routine-reason').textContent = routine.reason;
+    const plan = document.querySelector('#routine-plan');
+    plan.textContent = routine.steps.map(step => `${step.label} ${step.minutes}분`).join(' · ');
+    plan.hidden = routine.steps.length === 0;
     // Safety guidance is always visible, including when the detailed-reason flag is OFF.
     document.querySelector('#extra-reason').hidden = !flags.detailedReason.enabled || routine.duration === 0;
     result.classList.toggle('result-v2', flags.newResultCard.enabled);

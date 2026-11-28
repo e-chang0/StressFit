@@ -24,6 +24,10 @@
           <select id="minutes" name="minutes"><option value="5">5분</option><option value="10" selected>10분</option><option value="20">20분</option><option value="30">30분</option></select>
           <label for="place">운동 장소</label>
           <select id="place" name="place"><option value="indoor">실내</option><option value="outdoor">야외</option></select>
+          <label class="checkbox"><input name="isRaining" type="checkbox"> 밖에 비가 와요</label>
+          <label class="checkbox"><input name="preferLight" type="checkbox"> 가벼운 강도로 하고 싶어요</label>
+          <label class="checkbox"><input name="hasBand" type="checkbox"> 운동 밴드가 있어요</label>
+          <label class="checkbox"><input name="wantsStretch" type="checkbox"> 오늘은 스트레칭이 목표예요</label>
           <label class="checkbox"><input name="hasPain" type="checkbox"> 현재 통증이나 부상이 있어요</label>
           <button type="submit">내 루틴 확인하기 <span>→</span></button>
           <p id="error" role="alert"></p>
@@ -37,6 +41,7 @@
             <span id="result-badge" class="tag" hidden>오늘의 작은 목표</span>
             <h3 id="routine-title"></h3>
             <p id="routine-detail"></p>
+            <p id="routine-plan" hidden></p>
             <p id="routine-reason"></p>
             <p id="extra-reason" hidden>추천은 입력한 스트레스 수준·가용 시간·장소를 함께 반영해요. 부담 없는 속도로 시작하고 몸이 불편하면 멈춰 주세요.</p>
             <button id="complete-routine" type="button" hidden>이 루틴을 완료했어요</button>
