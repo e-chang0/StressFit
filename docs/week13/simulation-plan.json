@@ -1,0 +1,18 @@
+{
+  "startsAt": "2026-11-28T06:56:31Z",
+  "days": 14,
+  "experimentId": "recommendation-cta-v1",
+  "source": "이 대화의 LLM이 한 번 작성한 페르소나별 버튼 클릭 판단. 이후 자동 실행은 이 판단을 반복하며 매일 LLM을 다시 호출하지 않음",
+  "decisions": [
+    {"id":"P01","click":true,"reason":"시간이 부족하지만 바로 짧은 루틴을 확인하려 한다."},
+    {"id":"P02","click":true,"reason":"퇴근 후 간단한 산책을 찾고 있어 추천을 확인한다."},
+    {"id":"P03","click":true,"reason":"처음 운동하므로 자신에게 맞는 루틴을 찾는 문구에 관심을 보인다."},
+    {"id":"P04","click":false,"reason":"이미 산책을 정했고 점심시간이 짧아 추천을 건너뛴다."},
+    {"id":"P05","click":false,"reason":"통증이 있어 운동 추천보다 휴식을 우선한다."},
+    {"id":"P06","click":true,"reason":"규칙적인 운동을 시작하려고 추천을 확인한다."},
+    {"id":"P07","click":true,"reason":"기숙사에서 가능한 가벼운 운동을 찾아본다."},
+    {"id":"P08","click":true,"reason":"짧은 야외 활동을 위해 추천을 확인한다."},
+    {"id":"P09","click":false,"reason":"강도 정보가 충분한지 걱정돼 추천 요청을 미룬다."},
+    {"id":"P10","click":true,"reason":"운동 후 기록을 남기려 우선 루틴을 확인한다."}
+  ]
+}
