@@ -1,0 +1,27 @@
+{
+  "source": "이 대화에서 한 LLM이 한 번에 작성한 20개 가상 응답",
+  "generatedAt": "2026-11-28",
+  "prompt": "각 페르소나가 오늘의 상태 입력 화면에서 배정된 버튼 문구 하나를 봤다고 가정한다. 상황을 고려해 추천 버튼을 누를지와 이유를 답한다. 두 회차는 가상의 1주차와 2주차다.",
+  "responses": [
+    {"week":1,"persona":"P01","shown":"A","situation":"시험 직전, 실내에서 5분 정도 쉴 수 있다.","click":true,"reason":"짧은 루틴을 바로 확인하고 싶다."},
+    {"week":1,"persona":"P02","shown":"A","situation":"퇴근 후 지쳤지만 10분 산책은 가능하다.","click":true,"reason":"어떤 걷기 루틴인지 확인할 여유가 있다."},
+    {"week":1,"persona":"P03","shown":"B","situation":"처음 운동을 시작하려고 집에 있다.","click":true,"reason":"나에게 맞는 운동을 찾는다는 문구가 궁금하다."},
+    {"week":1,"persona":"P04","shown":"B","situation":"점심시간이 촉박하고 산책할 경로를 이미 정했다.","click":false,"reason":"추천을 더 확인하기보다 바로 걷겠다."},
+    {"week":1,"persona":"P05","shown":"A","situation":"무릎이 아파 오늘 운동해도 될지 망설인다.","click":true,"reason":"통증을 표시한 뒤 어떤 안내가 나오는지 확인하고 싶다."},
+    {"week":1,"persona":"P06","shown":"A","situation":"재택근무 후 집에서 가볍게 움직이고 싶다.","click":true,"reason":"루틴을 확인해 보고 따라 할 수 있다."},
+    {"week":1,"persona":"P07","shown":"B","situation":"기숙사에서 조용히 움직일 방법을 찾고 있다.","click":true,"reason":"내 상황에 맞는 루틴이 있는지 확인한다."},
+    {"week":1,"persona":"P08","shown":"A","situation":"스트레스가 심하지만 잠깐 밖에 나갈 수 있다.","click":true,"reason":"5분짜리 활동을 확인하면 시작하기 쉬울 것 같다."},
+    {"week":1,"persona":"P09","shown":"A","situation":"초보자라 운동 강도가 걱정된다.","click":false,"reason":"시작 전에 강도 설명이 더 필요하다."},
+    {"week":1,"persona":"P10","shown":"A","situation":"운동 기록을 남기고 싶지만 지금은 시간이 없다.","click":false,"reason":"나중에 여유가 생기면 추천을 보겠다."},
+    {"week":2,"persona":"P01","shown":"A","situation":"과제를 마치고 5분 쉬는 중이다.","click":true,"reason":"짧은 휴식 시간에 할 수 있는 루틴을 확인한다."},
+    {"week":2,"persona":"P02","shown":"A","situation":"야근 뒤라 너무 피곤해 쉬고 싶다.","click":false,"reason":"지금은 추천을 봐도 운동하기 어려울 것 같다."},
+    {"week":2,"persona":"P03","shown":"B","situation":"운동을 다시 시작하려고 짧은 루틴을 찾는다.","click":true,"reason":"자신에게 맞는 제안을 살펴보고 싶다."},
+    {"week":2,"persona":"P04","shown":"B","situation":"점심시간에 새로운 걷기 방법을 찾고 있다.","click":true,"reason":"평소와 다른 루틴이 있는지 확인한다."},
+    {"week":2,"persona":"P05","shown":"A","situation":"무릎 통증이 계속되어 쉬는 중이다.","click":false,"reason":"오늘은 운동보다 휴식을 먼저 하겠다."},
+    {"week":2,"persona":"P06","shown":"A","situation":"오래 앉아 있어 실내에서 몸을 풀고 싶다.","click":true,"reason":"간단한 움직임을 확인해 보겠다."},
+    {"week":2,"persona":"P07","shown":"B","situation":"밤이라 주변에 소음을 내기 어렵다.","click":true,"reason":"조용한 운동이 추천될지 확인하고 싶다."},
+    {"week":2,"persona":"P08","shown":"A","situation":"비가 오지만 실내에서 잠시 움직일 수 있다.","click":true,"reason":"실내에서 할 수 있는 루틴을 확인한다."},
+    {"week":2,"persona":"P09","shown":"A","situation":"운동을 조금씩 시작해 보고 싶다.","click":true,"reason":"추천의 시간과 강도를 먼저 확인해 보겠다."},
+    {"week":2,"persona":"P10","shown":"A","situation":"오늘은 10분 운동을 하고 기록할 여유가 있다.","click":true,"reason":"추천을 확인한 뒤 완료 기록을 남겨 보겠다."}
+  ]
+}
