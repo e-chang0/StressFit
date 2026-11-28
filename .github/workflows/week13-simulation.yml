@@ -1,0 +1,36 @@
+name: Week 13 persona simulation
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/week13-simulation.yml']
+  schedule:
+    - cron: '15 */6 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: week13-simulation
+  cancel-in-progress: false
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - run: node scripts/week13-simulation.js
+      - name: Save simulation records
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/week13/simulation docs/week13/simulation-report.md
+          if ! git diff --cached --quiet; then
+            git commit -m '13주차 가상 실험 기록 갱신'
+            git push
+          fi
+      - run: cat docs/week13/simulation-report.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: week13-simulation-report
+          path: docs/week13/simulation-report.md

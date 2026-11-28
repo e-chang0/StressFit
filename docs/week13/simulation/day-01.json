@@ -1,0 +1,239 @@
+{
+  "source": "llm-persona-scripted-simulation",
+  "recordedAt": "2026-11-28T06:58:15.874Z",
+  "day": 1,
+  "assignments": [
+    {
+      "persona": "P01",
+      "variant": "A",
+      "click": true,
+      "reason": "시간이 부족하지만 바로 짧은 루틴을 확인하려 한다."
+    },
+    {
+      "persona": "P02",
+      "variant": "A",
+      "click": true,
+      "reason": "퇴근 후 간단한 산책을 찾고 있어 추천을 확인한다."
+    },
+    {
+      "persona": "P03",
+      "variant": "B",
+      "click": true,
+      "reason": "처음 운동하므로 자신에게 맞는 루틴을 찾는 문구에 관심을 보인다."
+    },
+    {
+      "persona": "P04",
+      "variant": "B",
+      "click": false,
+      "reason": "이미 산책을 정했고 점심시간이 짧아 추천을 건너뛴다."
+    },
+    {
+      "persona": "P05",
+      "variant": "A",
+      "click": false,
+      "reason": "통증이 있어 운동 추천보다 휴식을 우선한다."
+    },
+    {
+      "persona": "P06",
+      "variant": "A",
+      "click": true,
+      "reason": "규칙적인 운동을 시작하려고 추천을 확인한다."
+    },
+    {
+      "persona": "P07",
+      "variant": "B",
+      "click": true,
+      "reason": "기숙사에서 가능한 가벼운 운동을 찾아본다."
+    },
+    {
+      "persona": "P08",
+      "variant": "A",
+      "click": true,
+      "reason": "짧은 야외 활동을 위해 추천을 확인한다."
+    },
+    {
+      "persona": "P09",
+      "variant": "A",
+      "click": false,
+      "reason": "강도 정보가 충분한지 걱정돼 추천 요청을 미룬다."
+    },
+    {
+      "persona": "P10",
+      "variant": "A",
+      "click": true,
+      "reason": "운동 후 기록을 남기려 우선 루틴을 확인한다."
+    }
+  ],
+  "events": [
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P01-1",
+      "timestamp": "2026-11-28T06:58:15.872Z",
+      "event": "experiment_exposure",
+      "userId": "persona-01",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P01-2",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "recommend_click",
+      "userId": "persona-01",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P02-1",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "experiment_exposure",
+      "userId": "persona-02",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P02-2",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "recommend_click",
+      "userId": "persona-02",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P03-1",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "experiment_exposure",
+      "userId": "persona-03",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P03-2",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "recommend_click",
+      "userId": "persona-03",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P04-1",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "experiment_exposure",
+      "userId": "persona-04",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P05-1",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "experiment_exposure",
+      "userId": "persona-05",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P06-1",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "experiment_exposure",
+      "userId": "persona-06",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P06-2",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "recommend_click",
+      "userId": "persona-06",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P07-1",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "experiment_exposure",
+      "userId": "persona-07",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P07-2",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "recommend_click",
+      "userId": "persona-07",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "B"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P08-1",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "experiment_exposure",
+      "userId": "persona-08",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P08-2",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "recommend_click",
+      "userId": "persona-08",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P09-1",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "experiment_exposure",
+      "userId": "persona-09",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P10-1",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "experiment_exposure",
+      "userId": "persona-10",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    },
+    {
+      "schemaVersion": 1,
+      "eventId": "simulation-1-P10-2",
+      "timestamp": "2026-11-28T06:58:15.874Z",
+      "event": "recommend_click",
+      "userId": "persona-10",
+      "audience": "general",
+      "experimentId": "recommendation-cta-v1",
+      "variant": "A"
+    }
+  ]
+}
