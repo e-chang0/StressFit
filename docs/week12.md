@@ -32,4 +32,4 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-로컬에서 실패하면 스크린샷이 `test-results/`에 저장됩니다.
+로컬에서 실패하면 스크린샷이 `test-results/`에 저장됩니다. GitHub Actions의 스크린샷은 30일 동안 보관합니다.
