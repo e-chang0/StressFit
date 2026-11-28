@@ -8,4 +8,4 @@
 | 4 | 추천 강도와 시간 설명 | 초보자와 30분 선택자의 이해를 돕기 위함 | 후보 |
 | 5 | 1주차·2주차 집계와 결정 기록 | 실험 결과와 판단 근거 정리 | 대기 |
 
-관련 이슈: [실험 조건 확인 #23](https://github.com/e-chang0/StressFit/issues/23), [실험 기록과 집계 #25](https://github.com/e-chang0/StressFit/issues/25), [추천 설명 개선 #24](https://github.com/e-chang0/StressFit/issues/24). Projects 보드는 아직 연결하지 않았다.
+관련 이슈: [실험 방식 정리 #23](https://github.com/e-chang0/StressFit/issues/23), [실험 기록과 집계 #25](https://github.com/e-chang0/StressFit/issues/25), [추천 설명 개선 #24](https://github.com/e-chang0/StressFit/issues/24). [13주차 실험 보드](https://github.com/users/e-chang0/projects/6)에서 진행 상태를 확인할 수 있다.

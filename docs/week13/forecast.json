@@ -1,0 +1,86 @@
+{
+  "type": "accelerated-projection-not-observed-14-day-operation",
+  "calculatedAt": "2026-11-28T07:26:39.632Z",
+  "method": "LLM이 사전에 정한 가상 인물 10명의 클릭 판단을 각 가상 날짜에 그대로 반복하는 산술 계산",
+  "limitation": "미래의 관찰값이나 실제 2주 운영 기록이 아니다. 반복은 새 표본이나 피드백을 만들지 않는다.",
+  "participants": [
+    {
+      "persona": "P01",
+      "variant": "A",
+      "click": true,
+      "reason": "시간이 부족하지만 바로 짧은 루틴을 확인하려 한다."
+    },
+    {
+      "persona": "P02",
+      "variant": "A",
+      "click": true,
+      "reason": "퇴근 후 간단한 산책을 찾고 있어 추천을 확인한다."
+    },
+    {
+      "persona": "P03",
+      "variant": "B",
+      "click": true,
+      "reason": "처음 운동하므로 자신에게 맞는 루틴을 찾는 문구에 관심을 보인다."
+    },
+    {
+      "persona": "P04",
+      "variant": "B",
+      "click": false,
+      "reason": "이미 산책을 정했고 점심시간이 짧아 추천을 건너뛴다."
+    },
+    {
+      "persona": "P05",
+      "variant": "A",
+      "click": false,
+      "reason": "통증이 있어 운동 추천보다 휴식을 우선한다."
+    },
+    {
+      "persona": "P06",
+      "variant": "A",
+      "click": true,
+      "reason": "규칙적인 운동을 시작하려고 추천을 확인한다."
+    },
+    {
+      "persona": "P07",
+      "variant": "B",
+      "click": true,
+      "reason": "기숙사에서 가능한 가벼운 운동을 찾아본다."
+    },
+    {
+      "persona": "P08",
+      "variant": "A",
+      "click": true,
+      "reason": "짧은 야외 활동을 위해 추천을 확인한다."
+    },
+    {
+      "persona": "P09",
+      "variant": "A",
+      "click": false,
+      "reason": "강도 정보가 충분한지 걱정돼 추천 요청을 미룬다."
+    },
+    {
+      "persona": "P10",
+      "variant": "A",
+      "click": true,
+      "reason": "운동 후 기록을 남기려 우선 루틴을 확인한다."
+    }
+  ],
+  "groups": [
+    {
+      "variant": "A",
+      "personas": 7,
+      "clicked": 5,
+      "projectedWeeklyExposures": 49,
+      "projectedWeeklyClicks": 35,
+      "rate": 0.7142857142857143
+    },
+    {
+      "variant": "B",
+      "personas": 3,
+      "clicked": 2,
+      "projectedWeeklyExposures": 21,
+      "projectedWeeklyClicks": 14,
+      "rate": 0.6666666666666666
+    }
+  ]
+}
