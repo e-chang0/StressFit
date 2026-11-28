@@ -10,7 +10,7 @@ test('비 오는 날 실내 루틴을 추천하고 통증을 표시하면 휴식
 
   const recommend = page.getByRole('button', { name: /루틴 (확인하기|찾기)/ });
   await recommend.click();
-  await expect(page.getByRole('heading', { name: '밴드 운동' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '밴드 운동' })).toBeHidden();
   await expect(page.getByText('비가 와서 실내 루틴을 골랐어요.')).toBeVisible();
   const plan = page.getByText('준비 4분 · 본운동 12분 · 마무리 4분');
   await expect(plan).toBeVisible();
