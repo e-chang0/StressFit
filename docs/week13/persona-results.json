@@ -1,0 +1,196 @@
+{
+  "source": "LLM이 작성한 가상 인물과 평가; 실제 사용자 조사 아님",
+  "generatedAt": "2026-11-28T06:52:16.044Z",
+  "results": [
+    {
+      "id": "P01",
+      "profile": "시험 기간에 시간이 부족한 대학생",
+      "scenario": "실내에서 5분만 움직이고 싶다",
+      "input": {
+        "stress": 8,
+        "minutes": 5,
+        "place": "indoor",
+        "hasPain": false
+      },
+      "result": {
+        "title": "가벼운 스트레칭",
+        "intensity": "낮음",
+        "duration": 5,
+        "reason": "스트레스가 높은 날을 위한 가벼운 활동 데모입니다."
+      },
+      "feedback": "5분 스트레칭이라 시작하기 쉽다. 어떤 동작을 해야 하는지는 알기 어렵다.",
+      "improvement": "동작과 순서를 짧게 보여주기"
+    },
+    {
+      "id": "P02",
+      "profile": "퇴근 후 지친 직장인",
+      "scenario": "집 근처에서 10분 걷고 싶다",
+      "input": {
+        "stress": 9,
+        "minutes": 10,
+        "place": "outdoor",
+        "hasPain": false
+      },
+      "result": {
+        "title": "천천히 걷기",
+        "intensity": "낮음",
+        "duration": 10,
+        "reason": "스트레스가 높은 날을 위한 가벼운 활동 데모입니다."
+      },
+      "feedback": "천천히 걷기라는 제안이 부담은 적다. 비가 오는 날에도 가능한지 궁금하다.",
+      "improvement": "날씨나 실내 대안 선택 추가"
+    },
+    {
+      "id": "P03",
+      "profile": "운동을 처음 시작하는 신입생",
+      "scenario": "스트레스가 보통인 날 집에서 운동한다",
+      "input": {
+        "stress": 5,
+        "minutes": 10,
+        "place": "indoor",
+        "hasPain": false
+      },
+      "result": {
+        "title": "가벼운 맨몸 운동",
+        "intensity": "보통",
+        "duration": 10,
+        "reason": "선택한 장소와 가용 시간에 맞춘 기본 루틴입니다."
+      },
+      "feedback": "10분으로 짧지만 맨몸 운동의 동작과 강도를 알 수 없어 따라 하기 어렵다.",
+      "improvement": "초보자용 동작 예시 제공"
+    },
+    {
+      "id": "P04",
+      "profile": "점심시간에 산책하는 사무직",
+      "scenario": "야외에서 20분을 쓸 수 있다",
+      "input": {
+        "stress": 3,
+        "minutes": 20,
+        "place": "outdoor",
+        "hasPain": false
+      },
+      "result": {
+        "title": "편안한 속도로 걷기",
+        "intensity": "보통",
+        "duration": 20,
+        "reason": "선택한 장소와 가용 시간에 맞춘 기본 루틴입니다."
+      },
+      "feedback": "걷기는 점심시간에 맞지만 편안한 속도라는 표현만으로는 기준이 모호하다.",
+      "improvement": "걷기 속도의 쉬운 설명 제공"
+    },
+    {
+      "id": "P05",
+      "profile": "무릎 통증이 있는 사용자",
+      "scenario": "통증이 있는 상태로 운동 추천을 요청한다",
+      "input": {
+        "stress": 8,
+        "minutes": 20,
+        "place": "indoor",
+        "hasPain": true
+      },
+      "result": {
+        "title": "오늘은 휴식을 선택해 주세요",
+        "intensity": "휴식",
+        "duration": 0,
+        "reason": "통증이 있으면 운동을 멈추고 전문가와 상담해 주세요."
+      },
+      "feedback": "운동 대신 휴식을 안내해 안심된다. 통증이 지속될 때 어떻게 해야 하는지도 알고 싶다.",
+      "improvement": "전문가 상담 안내를 눈에 잘 띄게 유지"
+    },
+    {
+      "id": "P06",
+      "profile": "운동 습관을 만들고 싶은 재택근무자",
+      "scenario": "실내에서 30분 동안 운동하려고 한다",
+      "input": {
+        "stress": 4,
+        "minutes": 30,
+        "place": "indoor",
+        "hasPain": false
+      },
+      "result": {
+        "title": "가벼운 맨몸 운동",
+        "intensity": "보통",
+        "duration": 20,
+        "reason": "선택한 장소와 가용 시간에 맞춘 기본 루틴입니다."
+      },
+      "feedback": "30분을 선택했는데 20분만 추천되어 이유가 궁금하다.",
+      "improvement": "추천 시간이 최대 20분인 이유 안내"
+    },
+    {
+      "id": "P07",
+      "profile": "조용한 운동을 선호하는 기숙사생",
+      "scenario": "밤에 실내에서 10분 움직인다",
+      "input": {
+        "stress": 7,
+        "minutes": 10,
+        "place": "indoor",
+        "hasPain": false
+      },
+      "result": {
+        "title": "가벼운 스트레칭",
+        "intensity": "낮음",
+        "duration": 10,
+        "reason": "스트레스가 높은 날을 위한 가벼운 활동 데모입니다."
+      },
+      "feedback": "스트레칭은 조용하게 할 수 있을 것 같다. 구체적인 동작 설명이 필요하다.",
+      "improvement": "소음이 적은 동작 안내"
+    },
+    {
+      "id": "P08",
+      "profile": "야외 활동을 좋아하는 취업 준비생",
+      "scenario": "스트레스가 높은 날 5분만 바깥에 나간다",
+      "input": {
+        "stress": 10,
+        "minutes": 5,
+        "place": "outdoor",
+        "hasPain": false
+      },
+      "result": {
+        "title": "천천히 걷기",
+        "intensity": "낮음",
+        "duration": 5,
+        "reason": "스트레스가 높은 날을 위한 가벼운 활동 데모입니다."
+      },
+      "feedback": "5분 걷기는 실천하기 쉽다. 걷기 전 준비가 필요한지도 알려주면 좋겠다.",
+      "improvement": "간단한 준비와 마무리 안내"
+    },
+    {
+      "id": "P09",
+      "profile": "운동 강도에 민감한 중년 초보자",
+      "scenario": "스트레스가 낮은 날 실내에서 20분 운동한다",
+      "input": {
+        "stress": 2,
+        "minutes": 20,
+        "place": "indoor",
+        "hasPain": false
+      },
+      "result": {
+        "title": "가벼운 맨몸 운동",
+        "intensity": "보통",
+        "duration": 20,
+        "reason": "선택한 장소와 가용 시간에 맞춘 기본 루틴입니다."
+      },
+      "feedback": "보통 강도라는 표시가 있지만 내 체력에 맞는지 판단하기 어렵다.",
+      "improvement": "강도 선택과 쉬운 강도 설명 추가"
+    },
+    {
+      "id": "P10",
+      "profile": "운동 후 기록을 남기고 싶은 프리랜서",
+      "scenario": "야외에서 10분 운동한 뒤 완료를 기록한다",
+      "input": {
+        "stress": 6,
+        "minutes": 10,
+        "place": "outdoor",
+        "hasPain": false
+      },
+      "result": {
+        "title": "편안한 속도로 걷기",
+        "intensity": "보통",
+        "duration": 10,
+        "reason": "선택한 장소와 가용 시간에 맞춘 기본 루틴입니다."
+      },
+      "feedback": "걷기 추천은 이해하기 쉽다. 완료 기록이 다른 기기에서도 유지되는지 알고 싶다.",
+      "improvement": "기록이 현재 브라우저에만 저장됨을 명확히 안내"
+    }
+  ]
+}
